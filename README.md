@@ -8,3 +8,5 @@ The project is structured into two main parts:
 - Frontend: Developed with React
 
 For more details on how to set up and run the project, please refer to the documentation provided in the respective directories.
+
+Code Optimizer
