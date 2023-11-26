@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Plot from 'react-plotly.js';
 import Submit from './SubmitButton';
+import ExampleComponent from './ExampleComponent';
+import ThreeDSurfaceGraph from './ThreeDSurfaceGraph';
 
 function PowerGraph() {
     const [n, setN] = useState(2); // Default power
@@ -31,6 +33,8 @@ function PowerGraph() {
                 </label>
                 <Submit />
             </form>
+            <ExampleComponent />
+            <ThreeDSurfaceGraph width={720} height={440} />
             <Plot
                 data={[{
                     x: xData, 
