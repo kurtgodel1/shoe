@@ -1,8 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from './slices/counterSlice';
+import graphDataReducer from './slices/graphDataSlice'; // Update the path
 
-export default configureStore({
-    reducer: {
-        counter: counterReducer,
-      },
+export const store = configureStore({
+  reducer: {
+    graphData: graphDataReducer,
+    // ... other reducers
+  },
 });
+
+
+export default store;
