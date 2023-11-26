@@ -1,13 +1,19 @@
+from django.contrib.auth import authenticate
 from rest_framework.views import APIView
 from rest_framework.responses import Response
-from django.contrib.auth models import User
-from rest_framework.authentication import token_authentication, token_authentication_classes
-from django.contrib.auth forms import UserCreationForm
+from django.contrib.auth.models import User
+from .serializers import UserSerializer
+from django.contrib.auth import login
+from django.contrib.auth forms import AuthenticationForm
 
-class UserRegistrationView(APIView):
+
+# Login View
+class LoginView(APIView):
     def post(self, request):
-        form = UserCreationForm(request.data)
+        form = AuthenticationForm(request.data)
         if form.is_valid():
-            user = form.save()
-            return Response({'username': user.username, 'id': user.id}, status=201)
-        return Response(form.errors, status=400)
+            user = form.get_user()
+            authenticate(request, user)
+            serializer = UserSerializer(user)
+            return Response(serializer.data)
+        return Response(form.errors, 200)
