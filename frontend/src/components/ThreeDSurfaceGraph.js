@@ -44,6 +44,7 @@ const ThreeDSurfaceGraph = ({ width, height, graphData, fetchGraphData }) => {
     const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true });
     const surface = new THREE.Mesh(geometry, material);
     scene.add(surface);
+    const mount = mountRef.current;
 
     const animate = () => {
       requestAnimationFrame(animate);
@@ -53,7 +54,7 @@ const ThreeDSurfaceGraph = ({ width, height, graphData, fetchGraphData }) => {
     animate();
 
     return () => {
-      mountRef.current.removeChild(renderer.domElement);
+      mount.removeChild(renderer.domElement);
     };
   }, [graphData, width, height]);
 

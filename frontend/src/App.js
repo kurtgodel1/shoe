@@ -11,6 +11,7 @@ import CounterComponent from './components/CounterComponent';
 import LoginForm from './components/auth_components/LoginForm';
 import RegistrationForm from './components/auth_components/RegistrationForm';
 import LogoutButton from './components/auth_components/LogoutButton';
+import RegisterButton from './components/auth_components/RegisterButton';
 
 // import './App.css
 
@@ -23,6 +24,7 @@ function App() {
                     <Typography variant="h6">
                         Scientific Calculations
                     </Typography>
+                    <RegisterButton />
                     <LogoutButton />
                 </Toolbar>          
           </AppBar>
