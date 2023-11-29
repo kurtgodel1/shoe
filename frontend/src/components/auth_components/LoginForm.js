@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { login } from './store/slices/authSlice';
+import { login } from '../../store/slices/authSlice';
 import config from '../../config'
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 function LoginForm() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -15,10 +19,9 @@ function LoginForm() {
                 username,
                 password
             });
-            const token = response.data.token; // Adjust based on your backend response structure
-            localStorage.setItem('token', token); // Storing the token in localStorage
+            
             dispatch(login({ user: response.data.user, token: response.data.token }));
-            // Handle success (e.g., store token, redirect to protected route)
+            navigate('/');
         } catch (error) {
             console.error('Login error:', error);
             // Handle errors (e.g., display error message)

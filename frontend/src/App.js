@@ -8,10 +8,14 @@ import MathExpression from './components/MathExpression';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import CounterComponent from './components/CounterComponent';
+import LoginForm from './components/auth_components/LoginForm';
+import RegistrationForm from './components/auth_components/RegistrationForm';
+import LogoutButton from './components/auth_components/LogoutButton';
 
-
+// import './App.css
 
 function App() {
+
   return (
       <Router>
           <AppBar position="static">
@@ -19,11 +23,14 @@ function App() {
                     <Typography variant="h6">
                         Scientific Calculations
                     </Typography>
+                    <LogoutButton />
                 </Toolbar>          
           </AppBar>
           <Container>
               <Box my={4}>
                   <Routes>
+                      <Route path="/login" element={<LoginForm />} />
+                      <Route path="/register" element={<RegistrationForm />} />
                       <Route path="/" element={<PowerGraph />} />
                       <Route path="/math" element={<MathExpression />} />
                       <Route path="/counter" element={<CounterComponent />} />
