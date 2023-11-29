@@ -4,6 +4,7 @@ import { login } from '../../store/slices/authSlice';
 import config from '../../config';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Button, TextField, Box, Typography } from '@mui/material';
 
 function LoginForm() {
     const [username, setUsername] = useState('');
@@ -48,22 +49,37 @@ function LoginForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="text"
+        <Box component="form" onSubmit={handleSubmit} sx={{  maxWidth: '500px', margin: '0 auto' }}>
+            <TextField
+                margin="normal"
+                required
+                fullWidth
+                label="Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="Username"
+                autoComplete="username"
             />
-            <input
+            <TextField
+                margin="normal"
+                required
+                fullWidth
+                label="Password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
+                autoComplete="current-password"
             />
-            <button type="submit" disabled={isSubmitting}>Login</button>
-            {error && <div style={{ color: 'red' }}>{error}</div>}
-        </form>
+            <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                disabled={isSubmitting}
+            >
+                Sign In
+            </Button>
+            {error && <Typography color="error">{error}</Typography>}
+        </Box>
     );
 }
 

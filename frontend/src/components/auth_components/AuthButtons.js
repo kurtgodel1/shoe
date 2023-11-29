@@ -1,9 +1,53 @@
+
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../store/slices/authSlice';
 import config from '../../config'
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+
+
+function LoginButton() {
+    const navigate = useNavigate();
+
+    const Login = async () => {
+      try {
+        
+        navigate('/login');
+
+      } catch (error) {
+        console.error('Logout error:', error);
+      }
+    };
+  
+    return (
+          <Button color="inherit" onClick={Login}>
+            Login
+          </Button>
+    );
+  }
+  
+  function RegisterButton() {
+    const navigate = useNavigate();
+
+    const Register = async () => {
+      try {
+        
+        navigate('/register');
+
+      } catch (error) {
+        console.error('Logout error:', error);
+      }
+    };
+  
+    return (
+          <Button color="inherit" onClick={Register}>
+            Register
+          </Button>
+    );
+  }
+  
+
 
 
 
@@ -33,4 +77,4 @@ function LogoutButton() {
     );
   }
   
-  export default LogoutButton;
+export {LoginButton, RegisterButton, LogoutButton};
