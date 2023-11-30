@@ -1,6 +1,7 @@
+import React from 'react';
 import LatexRenderer from './LatexRenderer';
 
-const ExampleComponent = () => {
+const ExampleComponent: React.FC = () => {
   return (
     <div>
       <p>This is an inline equation: <LatexRenderer content="E = mc^2" /></p>

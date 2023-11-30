@@ -3,17 +3,20 @@ import storage from 'redux-persist/lib/storage'; // Default to local storage for
 import { persistReducer, persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import graphDataReducer from './slices/graphDataSlice'; // Update the path
 import authReducer from './slices/authSlice'; // Update the path
+import counterReducer from './slices/counterSlice'; // Update the path
 
 // Define the root state type
 export interface RootState {
   graphData: ReturnType<typeof graphDataReducer>;
   auth: ReturnType<typeof authReducer>;
+  counter: ReturnType<typeof counterReducer>;
 }
 
 // Combine reducers as usual
 const rootReducer = combineReducers({
   graphData: graphDataReducer,
   auth: authReducer,
+  counter: counterReducer,
 });
 
 // Configuration object for redux-persist

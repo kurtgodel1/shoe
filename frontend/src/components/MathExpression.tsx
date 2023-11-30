@@ -1,11 +1,12 @@
-import React, { useEffect }  from 'react';
+import React, { useEffect } from 'react';
 import 'katex/dist/katex.min.css';
 import katex from 'katex';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { RootState } from '../store/store'; // Update the path as needed
 
-function MathExpression() {
-    const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+const MathExpression: React.FC = () => {
+    const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -19,7 +20,6 @@ function MathExpression() {
     });
 
     return <div dangerouslySetInnerHTML={{ __html: expression }} />;
-}
+};
 
 export default MathExpression;
-
