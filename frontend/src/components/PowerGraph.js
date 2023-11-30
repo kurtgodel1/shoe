@@ -3,6 +3,10 @@ import Plot from 'react-plotly.js';
 import Submit from './SubmitButton';
 import ExampleComponent from './ExampleComponent';
 import ThreeDSurfaceGraph from './ThreeDSurfaceGraph';
+import ForceMassAnimation from './graph_components/ForceMassAnimation';
+import QuiverPlot from './graph_components/QuiverPlot';
+import MtBrunoElevation from './graph_components/MtBrunoElevation';
+
 
 function PowerGraph() {
     const [n, setN] = useState(2); // Default power
@@ -33,6 +37,9 @@ function PowerGraph() {
                 </label>
                 <Submit />
             </form>
+            <MtBrunoElevation />
+            <QuiverPlot />  
+            <ForceMassAnimation />
             <ExampleComponent />
             <ThreeDSurfaceGraph width={720} height={440} />
             <Plot

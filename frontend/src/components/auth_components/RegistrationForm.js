@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import config from '../../config';
 import { useNavigate } from 'react-router-dom';
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { TextField, Button, CircularProgress, Container } from '@mui/material';
 
 function RegistrationForm() {
     const [username, setUsername] = useState('');
@@ -52,36 +52,43 @@ function RegistrationForm() {
     };
 
     return (
-    <Box component="form" onSubmit={handleSubmit} sx={{  maxWidth: '500px', margin: '0 auto' }}>
-        <TextField
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            label="Username"
-            fullWidth
-            margin="normal"
-        />
-        <TextField
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            label="Email"
-            fullWidth
-            margin="normal"
-        />
-        <TextField
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            label="Password"
-            fullWidth
-            margin="normal"
-        />
-        <Button type="submit" variant="contained" color="primary" disabled={isSubmitting}>
-            Register
-        </Button>
-        {error && <Typography color="error">{error}</Typography>}
-    </Box>
+        <Container maxWidth="xs">
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                <TextField
+                    label="Username"
+                    variant="outlined"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    fullWidth
+                />
+                <TextField
+                    label="Email"
+                    type="email"
+                    variant="outlined"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    fullWidth
+                />
+                <TextField
+                    label="Password"
+                    type="password"
+                    variant="outlined"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    fullWidth
+                />
+                <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    disabled={isSubmitting}
+                    fullWidth
+                >
+                    {isSubmitting ? <CircularProgress size={24} /> : 'Register'}
+                </Button>
+                {error && <div style={{ color: 'red' }}>{error}</div>}
+            </form>
+        </Container>
     );
 }
 

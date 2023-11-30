@@ -1,9 +1,14 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { combineReducers } from 'redux';
-import { persistReducer, persistStore } from 'redux-persist';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage'; // Default to local storage for web
+import { persistReducer, persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import graphDataReducer from './slices/graphDataSlice'; // Update the path
-import authReducer from './slices/authSlice';
+import authReducer from './slices/authSlice'; // Update the path
+
+// Define the root state type
+export interface RootState {
+  graphData: ReturnType<typeof graphDataReducer>;
+  auth: ReturnType<typeof authReducer>;
+}
 
 // Combine reducers as usual
 const rootReducer = combineReducers({
@@ -13,8 +18,8 @@ const rootReducer = combineReducers({
 
 // Configuration object for redux-persist
 const persistConfig = {
-  key: 'root', // The key for the persist
-  storage, // The storage to use
+  key: 'root',
+  storage,
   whitelist: ['auth'] // Only persist the auth slice, add other slices if needed
 };
 
@@ -26,7 +31,7 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'],
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
 });

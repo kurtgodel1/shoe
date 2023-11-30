@@ -4,7 +4,7 @@ import { login } from '../../store/slices/authSlice';
 import config from '../../config';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { Button, TextField, Box, Typography } from '@mui/material';
+import { TextField, Button, CircularProgress, Container } from '@mui/material';
 
 function LoginForm() {
     const [username, setUsername] = useState('');
@@ -49,37 +49,35 @@ function LoginForm() {
     };
 
     return (
-        <Box component="form" onSubmit={handleSubmit} sx={{  maxWidth: '500px', margin: '0 auto' }}>
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                label="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                autoComplete="username"
-            />
-            <TextField
-                margin="normal"
-                required
-                fullWidth
-                label="Password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                autoComplete="current-password"
-            />
-            <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-                disabled={isSubmitting}
-            >
-                Sign In
-            </Button>
-            {error && <Typography color="error">{error}</Typography>}
-        </Box>
+        <Container maxWidth="xs">
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                <TextField
+                    label="Username"
+                    variant="outlined"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    fullWidth
+                />
+                <TextField
+                    label="Password"
+                    type="password"
+                    variant="outlined"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    fullWidth
+                />
+                <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    disabled={isSubmitting}
+                    fullWidth
+                >
+                    {isSubmitting ? <CircularProgress size={24} /> : 'Login'}
+                </Button>
+                {error && <div style={{ color: 'red' }}>{error}</div>}
+            </form>
+        </Container>
     );
 }
 
