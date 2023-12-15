@@ -36,7 +36,7 @@ const ProductDetailPage: React.FC = () => {
                     <Card>
                         <CardMedia
                             component="img"
-                            image={product.imageUrl}
+                            image={product.image}
                             alt={product.name}
                         />
                     </Card>

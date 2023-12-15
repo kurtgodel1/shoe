@@ -24,12 +24,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     dispatch(addToCart(product));
   };
 
+  console.log('Product:', product.image);
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
         height="140"
-        image={product.imageUrl}
+        image={product.image}
         alt={product.name}
       />
       <CardContent>

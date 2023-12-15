@@ -16,7 +16,7 @@ export interface Category {
     material: string;
     brand: string;
     stock: number;
-    imageUrl: string;
+    image: string;
     category: Category;
   }
   
