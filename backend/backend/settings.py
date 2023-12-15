@@ -43,9 +43,9 @@ SECRET_KEY = 'django-insecure-d78+8_n%k3g=o4mh0ooxa*y=!n8z1i8h05v%*837ut!u5vr&=s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['projectgodel-9ba604cd888b.herokuapp.com', 'projectgodel.herokuapp.com', '0.0.0.0', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['shoesale-1ebb58ec0831.herokuapp.com', 'projectgodel.herokuapp.com', '0.0.0.0', 'localhost', '127.0.0.1']
 
-CSRF_TRUSTED_ORIGINS = ['https://projectgodel-9ba604cd888b.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://shoesale-1ebb58ec0831.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
@@ -62,7 +62,6 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'silk',
     'drf_yasg',
-
 
 ]
 
