@@ -13,6 +13,7 @@ import axios from 'axios';
 import config from '../../config';
 import { Category } from '../../types/types';
 import SearchBar from './SearchBar';  // Update the import path as needed
+import CartDropdown from '../CartDropdown'; // Update the path as needed
 
 
 const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -66,7 +67,7 @@ const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
     }));
 
     const AppBarStyled = styled(AppBar)(({ theme }) => ({
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.primary.light,
         color: theme.palette.primary.contrastText,
         boxShadow: 'none',
         borderBottom: `1px solid ${alpha(theme.palette.primary.light, 0.2)}`,
@@ -89,6 +90,7 @@ const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
                     <Typography variant="h6" sx={{ flexGrow: 1 }}>
                         Ayakkabı
                     </Typography>
+                    <CartDropdown />
                     <SearchBar onSearch={handleSearch} />
                     <Box sx={{ display: 'flex', gap: 1 }}>
                         {!isLoggedIn && (

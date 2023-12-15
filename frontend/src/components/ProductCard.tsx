@@ -4,6 +4,7 @@ import { Card, CardMedia, CardContent, Typography, CardActions, Button } from '@
 import { Product } from '../types/types';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../store/slices/cartSlice'; // Update the import path as needed
+import { useNavigate } from 'react-router-dom';
 
 
 interface ProductCardProps {
@@ -12,6 +13,11 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleViewProduct = () => {
+    navigate(`/product/${product.id}`);
+  };
 
   const handleAddToCart = () => {
     console.log('Adding to cart');
@@ -38,7 +44,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">View</Button>
+      <Button size="small" onClick={handleViewProduct}>View</Button>
         <Button size="small" onClick={handleAddToCart}>Add to Cart</Button>
       </CardActions>
     </Card>
