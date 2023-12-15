@@ -1,29 +1,26 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage'; // Default to local storage for web
 import { persistReducer, persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
-import graphDataReducer from './slices/graphDataSlice'; // Update the path
 import authReducer from './slices/authSlice'; // Update the path
-import counterReducer from './slices/counterSlice'; // Update the path
+import cartReducer from './slices/cartSlice'; // Update the path
 
 // Define the root state type
 export interface RootState {
-  graphData: ReturnType<typeof graphDataReducer>;
   auth: ReturnType<typeof authReducer>;
-  counter: ReturnType<typeof counterReducer>;
+  cart: ReturnType<typeof cartReducer>;
 }
 
 // Combine reducers as usual
 const rootReducer = combineReducers({
-  graphData: graphDataReducer,
   auth: authReducer,
-  counter: counterReducer,
+  cart: cartReducer,
 });
 
 // Configuration object for redux-persist
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth'] // Only persist the auth slice, add other slices if needed
+  whitelist: ['auth', 'cart'] // Only persist the auth slice, add other slices if needed
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

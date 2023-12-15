@@ -5,18 +5,41 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store'; // Update the path as needed
 import { LoginButton, RegisterButton, LogoutButton } from '../auth_components/AuthButtons'; // Update the path as needed
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { styled, alpha } from '@mui/material/styles';
+import axios from 'axios';
+import config from '../../config';
+import { Category } from '../../types/types';
+import SearchBar from './SearchBar';  // Update the import path as needed
 
 
 const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
     const drawerWidth = 240; // or any other value you prefer
-
     const [isDrawerOpen, setIsDrawerOpen] = useState(!isMobile);
+    const [categories, setCategories] = useState<Category[]>([]);
+
+
+    const handleSearch = (searchTerm: string) => {
+        console.log('Search Term:', searchTerm);
+        // Implement the search functionality here
+      };
+
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const response = await axios.get<Category[]>(`${config.API_URL}/api/categories`);
+                setCategories(response.data);
+            } catch (error) {
+                console.error('Error fetching categories', error);
+            }
+        };
+
+        fetchCategories();
+    }, []);
 
     const toggleDrawer = () => {
         setIsDrawerOpen(!isDrawerOpen);
@@ -66,6 +89,7 @@ const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
                     <Typography variant="h6" sx={{ flexGrow: 1 }}>
                         Ayakkabı
                     </Typography>
+                    <SearchBar onSearch={handleSearch} />
                     <Box sx={{ display: 'flex', gap: 1 }}>
                         {!isLoggedIn && (
                             <>
@@ -89,13 +113,14 @@ const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
                         {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                     </IconButton>
                     <List>
-                        <ListItem>
-                            <Button component={Link} to="/">Home</Button>
-                        </ListItem>
-                        <ListItem>
-                            <Button>About</Button>
-                        </ListItem>
-                        {/* More items */}
+                        {categories.map(category => (
+                            <ListItem key={category.id}>
+                                <Button component={Link} to={`/category/${category.id}`}>
+                                    {category.name}
+                                </Button>
+                            </ListItem>
+                        ))}
+                        {/* More static items */}
                     </List>
                 </Box>
             </DrawerContainer>
