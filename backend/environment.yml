@@ -1,0 +1,5 @@
+name: scientificWeb
+channels:
+  - anaconda
+  - defaults
+  - conda-forge

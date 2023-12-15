@@ -1,0 +1,16 @@
+ERROR 2023-12-14 09:23:23,261 log Internal Server Error: /sentry-debug/
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/scientificWeb/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/scientificWeb/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/scientificWeb/lib/python3.11/site-packages/sentry_sdk/integrations/django/views.py", line 84, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/Documents/GitHub/projectGodel/backend/backend/urls.py", line 45, in trigger_error
+    division_by_zero = 1 / 0
+                       ~~^~~
+ZeroDivisionError: division by zero
+ERROR 2023-12-14 09:23:23,312 basehttp "GET /sentry-debug/ HTTP/1.1" 500 74021

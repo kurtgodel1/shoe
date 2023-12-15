@@ -1,0 +1,51 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.15.0",
+    "@reduxjs/toolkit": "^2.0.1",
+    "@sentry/react": "^7.87.0",
+    "@sentry/tracing": "^7.87.0",
+    "@types/react-katex": "^3.0.4",
+    "@types/react-redux": "^7.1.33",
+    "@types/redux-persist": "^4.3.1",
+    "@vercel/speed-insights": "^1.0.2",
+    "axios": "^1.6.2",
+    "grunt": "^1.6.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-katex": "^3.0.1",
+    "react-plotly.js": "^2.6.0",
+    "react-redux": "^9.0.4",
+    "react-router-dom": "^6.20.1",
+    "redux-persist": "^6.0.0",
+    "three": "^0.159.0"
+  },
+  "devDependencies": {
+    "@types/katex": "^0.16.7",
+    "@types/node": "^20.10.4",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@types/react-plotly.js": "^2.6.3",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/three": "^0.159.0",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8"
+  }
+}
