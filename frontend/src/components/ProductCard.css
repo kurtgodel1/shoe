@@ -1,0 +1,78 @@
+/* ProductCard.css */
+.product-card {
+    font-family: 'Open Sans', sans-serif; /* Your chosen font */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    position: relative; /* Needed for positioning the add-to-cart button */
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px 16px;
+}
+
+.card-actions button {
+    transition: background-color 0.3s ease;
+}
+
+.card-actions button:hover {
+    background-color: #f50057;
+    color: white;
+}
+
+.product-name {
+    font-size: 1rem; /* Adjust size as needed */
+    font-weight: bold; /* Makes the product name stand out */
+    margin-bottom: 0.5rem; /* Adds some space below the product name */
+}
+
+.product-description {
+    font-size: 0.875rem; /* Slightly smaller font size for description */
+    line-height: 1.2; /* Adjust line height for better readability */
+    color: #666; /* Optional: a softer color for the description */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limits the text to two lines */
+    -webkit-box-orient: vertical;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.add-to-cart-button {
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transform: translateY(100%); /* Start from below */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    will-change: transform, opacity;
+    display: flex; /* Ensures the button stretches to full width of the card */
+    width: 100%;
+}
+
+.product-card:hover .add-to-cart-button {
+    animation: slideUp 0.3s ease forwards; /* Apply the animation on hover */
+}
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    position: relative; /* Ensures the button position is relative to the card */
+    overflow: hidden; /* Hide the button when it's outside the card */
+}
