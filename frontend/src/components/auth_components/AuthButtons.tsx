@@ -19,7 +19,7 @@ const LoginButton: React.FC = () => {
     };
 
     return (
-        <Button color="inherit" onClick={login}>
+        <Button variant="contained" color="primary" onClick={login}>
             Login
         </Button>
     );
@@ -38,7 +38,7 @@ const RegisterButton: React.FC = () => {
     };
 
     return (
-        <Button color="inherit" onClick={register}>
+        <Button variant="contained" color="primary" onClick={register}>
             Register
         </Button>
     );
@@ -59,7 +59,7 @@ const LogoutButton: React.FC = () => {
     };
 
     return (
-        <Button color="inherit" onClick={logoutUser}>
+        <Button variant="contained" color="primary" onClick={logoutUser}>
             Logout
         </Button>
     );

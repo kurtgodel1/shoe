@@ -30,7 +30,7 @@ const CategoriesSection : React.FC = () => {
                             <CardActionArea>
                                 <CardMedia
                                     component="img"
-                                    height="140"
+                                    height="300"
                                     image={category.image}
                                     alt={category.name}
                                 />
