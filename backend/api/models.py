@@ -1,6 +1,5 @@
 from django.db import models
 from auth_app.models import User  # Import the custom User model
-from django.conf import settings
 
 
 class Category(models.Model):
@@ -10,6 +9,7 @@ class Category(models.Model):
     
     def __str__(self):
         return self.name
+
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
