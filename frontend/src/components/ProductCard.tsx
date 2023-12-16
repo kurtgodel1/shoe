@@ -12,7 +12,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleAddToCart = (e) => {
+    const handleAddToCart = (e: React.MouseEvent) => {
         e.stopPropagation(); // Prevents the click event from reaching the card
         dispatch(addToCart(product));
     };
