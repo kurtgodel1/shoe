@@ -1,8 +1,9 @@
 import logging
 from rest_framework import viewsets
 from .models import User, Product, Order, OrderItem, Cart, CartItem, Review, Category
-from .serializers import UserSerializer, ProductSerializer, OrderSerializer, OrderItemSerializer, CartSerializer, CartItemSerializer, ReviewSerializer, CategorySerializer
-
+from .serializers import UserSerializer, ProductSerializer, OrderSerializer
+from .serializers import OrderItemSerializer, CartSerializer, CartItemSerializer, ReviewSerializer
+from .serializers import CategorySerializer
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
