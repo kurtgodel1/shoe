@@ -1,6 +1,6 @@
 // ProductCard.tsx
 import React from 'react';
-import { Card, CardMedia, CardContent, Typography, Button } from '@mui/material';
+import { Card, CardContent, Typography, Button } from '@mui/material';
 import { Product } from '../types/types';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../store/slices/cartSlice';
@@ -31,14 +31,13 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
     const handleCardClick = () => {
         navigate(`/product/${product.id}`);
     };
-    console.log(product.images.map(image => image.image));
 
     return (
-        <Card className="product-card" onClick={handleCardClick}>
-            <Slider {...settings}>
+        <Card className="product-card">
+            <Slider {...settings} >
                 {product.images.map((image, index) => (
-                    <div key={index}>
-                        <img src={image.image} alt={product.name} style={{ width: '100%' }} />
+                    <div key={index} onClick={(e) => e.stopPropagation()}>
+                        <img src={image.image} alt={product.name} style={{ width: '100%' }} onClick={handleCardClick}/>
                     </div>
                 ))}
             </Slider>

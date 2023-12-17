@@ -14,3 +14,161 @@ Traceback (most recent call last):
                        ~~^~~
 ZeroDivisionError: division by zero
 ERROR 2023-12-14 09:23:23,312 basehttp "GET /sentry-debug/ HTTP/1.1" 500 74021
+ERROR 2023-12-17 14:58:01,067 log Internal Server Error: /admin/api/product/
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/views.py", line 84, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/options.py", line 688, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/options.py", line 1926, in changelist_view
+    cl = self.get_changelist_instance(request)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/options.py", line 836, in get_changelist_instance
+    return ChangeList(
+           ^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/views/main.py", line 122, in __init__
+    self.queryset = self.get_queryset(request)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/views/main.py", line 529, in get_queryset
+    qs, search_may_have_duplicates = self.model_admin.get_search_results(
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/options.py", line 1155, in get_search_results
+    queryset = queryset.filter(models.Q.create(term_queries))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1545, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1576, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1404, in build_filter
+    return self._add_q(
+           ^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1576, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1404, in build_filter
+    return self._add_q(
+           ^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1576, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1491, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1312, in build_lookup
+    lhs = self.try_transform(lhs, lookup_name)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1356, in try_transform
+    raise FieldError(
+django.core.exceptions.FieldError: Unsupported lookup 'icontains' for ForeignKey or join on the field not permitted.
+ERROR 2023-12-17 14:58:01,145 basehttp "GET /admin/api/product/?q=erkek HTTP/1.1" 500 191491
+ERROR 2023-12-17 14:58:38,648 log Internal Server Error: /admin/api/product/
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/views.py", line 84, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/options.py", line 688, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/options.py", line 1926, in changelist_view
+    cl = self.get_changelist_instance(request)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/options.py", line 836, in get_changelist_instance
+    return ChangeList(
+           ^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/views/main.py", line 122, in __init__
+    self.queryset = self.get_queryset(request)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/views/main.py", line 529, in get_queryset
+    qs, search_may_have_duplicates = self.model_admin.get_search_results(
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/options.py", line 1155, in get_search_results
+    queryset = queryset.filter(models.Q.create(term_queries))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1436, in filter
+    return self._filter_or_exclude(False, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1454, in _filter_or_exclude
+    clone._filter_or_exclude_inplace(negate, args, kwargs)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1461, in _filter_or_exclude_inplace
+    self._query.add_q(Q(*args, **kwargs))
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1545, in add_q
+    clause, _ = self._add_q(q_object, self.used_aliases)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1576, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1404, in build_filter
+    return self._add_q(
+           ^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1576, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1404, in build_filter
+    return self._add_q(
+           ^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1576, in _add_q
+    child_clause, needed_inner = self.build_filter(
+                                 ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1491, in build_filter
+    condition = self.build_lookup(lookups, col, value)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1312, in build_lookup
+    lhs = self.try_transform(lhs, lookup_name)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/query.py", line 1356, in try_transform
+    raise FieldError(
+django.core.exceptions.FieldError: Unsupported lookup 'icontains' for ForeignKey or join on the field not permitted.
+ERROR 2023-12-17 14:58:38,730 basehttp "GET /admin/api/product/?q=erkek HTTP/1.1" 500 191491

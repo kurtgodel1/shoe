@@ -23,8 +23,7 @@ const FeaturedProducts : React.FC = () => {
                 Featured Products
             </Typography>
             <Grid container spacing={4}>
-                {featuredProducts.map(product => (
-                    
+                {featuredProducts.map(product => (         
                     <Grid item key={product.id} xs={12} sm={6} md={4}>
                         <ProductCard product={product} />
                     </Grid>

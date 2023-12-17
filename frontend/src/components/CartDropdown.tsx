@@ -53,7 +53,7 @@ const CartDropdown: React.FC = () => {
                 onClose={handleClose}
             >
                 {cartItems.length > 0 ? (
-                    <>
+                    <div>
                         {cartItems.map((item: CartItem) => (
                             <MenuItem key={item.product.id}>
                                 <Typography style={{ flexGrow: 1 }}>
@@ -71,7 +71,7 @@ const CartDropdown: React.FC = () => {
                         <MenuItem onClick={handleCheckout}>
                             Go to Checkout
                         </MenuItem>
-                    </>
+                    </div>
                 ) : (
                     <MenuItem>Your cart is empty</MenuItem>
                 )}

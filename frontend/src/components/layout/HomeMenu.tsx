@@ -1,13 +1,13 @@
 // UserDropdown.tsx
-import { IconButton, Menu, MenuItem } from '@mui/material';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+import { IconButton, Menu, MenuItem,  List, ListItem } from '@mui/material';
 import React, { useState } from 'react';
-import { LoginButton, RegisterButton, LogoutButton } from '../auth_components/AuthButtons';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 
+const categories = ["Sofas", "Chairs", "Tables", "Desks", "Beds"];
 
-const UserDropdown: React.FC = () => {
+
+const HomeMenu: React.FC = () => {
     const [authAnchorEl, setAuthAnchorEl] = useState<null | HTMLElement>(null);
     const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
 
@@ -29,7 +29,7 @@ const UserDropdown: React.FC = () => {
                 aria-haspopup="true"
                 onClick={handleAuthMenuOpen}
             >
-                <AccountCircle />
+                Home            
             </IconButton>
             <Menu
                 id="auth-menu"
@@ -38,17 +38,14 @@ const UserDropdown: React.FC = () => {
                 open={Boolean(authAnchorEl)}
                 onClose={handleAuthMenuClose}
             >
-                {!isLoggedIn ? (
-                    <div>
-                        <MenuItem onClick={handleAuthMenuClose}><LoginButton /></MenuItem>
-                        <MenuItem onClick={handleAuthMenuClose}><RegisterButton /></MenuItem>
-                    </div>
-                ) : (
-                    <MenuItem onClick={handleAuthMenuClose}><LogoutButton /></MenuItem>
-                )}
+                    {categories.map((category, index) => (
+                        <MenuItem key={index} sx={{ padding: '0 16px', cursor: 'pointer' }}>
+                            {category}
+                        </MenuItem>
+                    ))}
             </Menu>
         </div>
     );
 };
 
-export default UserDropdown;
+export default HomeMenu;

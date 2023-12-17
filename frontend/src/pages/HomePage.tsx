@@ -11,12 +11,24 @@ import NewsletterSignUp from '../components/homepage/NewsletterSignUp';
 import Footer from '../components/homepage/Footer';
 import AnimateOnScroll from '../components/homepage/AnimateOnScroll';
 import './HomePage.css';
+import { Grid } from '@mui/material';
+import HeroSectionRight from '../components/homepage/HeroSectionRight';
+
 
 const HomePage: React.FC = () => {
 
     return (
         <Box sx={{ flexGrow: 1, width: '100%'  }}>
-            <AnimateOnScroll className="section"><HeroSection /></AnimateOnScroll>
+            <AnimateOnScroll className="section">
+                <Grid container spacing={2}>
+                    <Grid item xs={6}>
+                        <HeroSection />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <HeroSectionRight />
+                    </Grid>
+                </Grid>
+            </AnimateOnScroll>
             <AnimateOnScroll className="section"><FeaturedProducts /></AnimateOnScroll>
             <AnimateOnScroll className="section"><CategoriesSection /></AnimateOnScroll>
             <AnimateOnScroll className="section"><PromotionalBanner /></AnimateOnScroll>
