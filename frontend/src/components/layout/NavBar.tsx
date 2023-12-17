@@ -20,10 +20,14 @@ const NavBar: React.FC = () => {
     return (
         <AppBarStyled position="static" color="inherit" elevation={0} >
             <Toolbar>
-                <Box sx={{ flexGrow: 0.5 }} />
+                <Box sx={{ flexGrow: 1 }} />
                 <HomeMenu />
-                <Box sx={{ flexGrow: 0.1 }} />
-                <UserDropdown />
+                <HomeMenu />
+                <HomeMenu />
+                <HomeMenu />
+                <HomeMenu />
+                <HomeMenu />
+                <HomeMenu />
                 <Box sx={{ flexGrow: 1 }} />
             </Toolbar>
         </AppBarStyled>

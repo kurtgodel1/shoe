@@ -1,54 +1,68 @@
 // UserDropdown.tsx
-import { IconButton, Menu, MenuItem } from '@mui/material';
+import {MenuItem } from '@mui/material';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { LoginButton, RegisterButton, LogoutButton } from '../auth_components/AuthButtons';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import { Box, Button, Paper, MenuList, Popper, Grow } from '@mui/material';
 
 
 const UserDropdown: React.FC = () => {
-    const [authAnchorEl, setAuthAnchorEl] = useState<null | HTMLElement>(null);
+    const [open, setOpen] = useState(false);
+    const anchorRef = useRef(null);
+
+    const handleMouseEnter = () => {
+        setOpen(true);
+    };
+
+    const handleMouseLeave = () => {
+        setOpen(false);
+    };
     const isLoggedIn = useSelector((state: RootState) => state.auth.isLoggedIn);
-
-    const handleAuthMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-        setAuthAnchorEl(event.currentTarget);
-    };
-
-    const handleAuthMenuClose = () => {
-        setAuthAnchorEl(null);
-    };
     
     return (
-        <div>
-            <IconButton
-                edge="end"
-                color="primary"
-                aria-label="account of current user"
-                aria-controls="auth-menu"
-                aria-haspopup="true"
-                onClick={handleAuthMenuOpen}
-            >
-                <AccountCircle />
-            </IconButton>
-            <Menu
-                id="auth-menu"
-                anchorEl={authAnchorEl}
-                keepMounted
-                open={Boolean(authAnchorEl)}
-                onClose={handleAuthMenuClose}
-            >
+        <Box sx={{ display: 'inline' }}>
+        <Button
+          ref={anchorRef}
+          aria-controls={open ? 'menu-list-grow' : undefined}
+          aria-haspopup="true"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
+          <AccountCircle />
+        </Button>
+        <Popper
+          open={open}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          placement="bottom-start"
+          transition
+          disablePortal
+        >
+          {({ TransitionProps }) => (
+            <Grow {...TransitionProps}>
+              <Paper
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                <MenuList autoFocusItem={open} id="menu-list-grow">
                 {!isLoggedIn ? (
                     <div>
-                        <MenuItem onClick={handleAuthMenuClose}><LoginButton /></MenuItem>
-                        <MenuItem onClick={handleAuthMenuClose}><RegisterButton /></MenuItem>
+                        <MenuItem onClick={handleMouseLeave}><LoginButton /></MenuItem>
+                        <MenuItem onClick={handleMouseLeave}><RegisterButton /></MenuItem>
                     </div>
                 ) : (
-                    <MenuItem onClick={handleAuthMenuClose}><LogoutButton /></MenuItem>
+                    <MenuItem onClick={handleMouseLeave}><LogoutButton /></MenuItem>
                 )}
-            </Menu>
-        </div>
+                </MenuList>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+      </Box>
     );
 };
 
 export default UserDropdown;
+
