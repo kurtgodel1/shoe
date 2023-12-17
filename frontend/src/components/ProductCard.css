@@ -8,7 +8,7 @@
     flex-direction: column; /* Aligns children (media, content, actions) in a column */
     justify-content: space-between; /* Distributes space evenly */
     width: 350px; /* Set your desired width */
-    height: 500px; /* Set your desired height */
+    height: 600px; /* Set your desired height */
     border-radius: 0 !important;
     box-shadow: 0 0 0 rgba(0, 0, 0, 0.2) !important;
 
@@ -91,7 +91,7 @@
 
 .product-card:hover .add-to-cart-button {
     opacity: 1;
-    transform: translateX(-50%) translateY(-400%); /* Adjust this value to control how high the button moves */
+    transform: translateX(-50%) translateY(-500%); /* Adjust this value to control how high the button moves */
 }
 
 .card-actions {

@@ -21,7 +21,6 @@ class Product(models.Model):
     brand = models.CharField(max_length=100)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name='products')
     stock = models.IntegerField()
-    image = models.ImageField(upload_to='product_images/')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
@@ -76,3 +75,12 @@ class Review(models.Model):
 
     def __str__(self):
         return f"Review by {self.user.username} on {self.product.name}"
+
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='product_images/')
+
+    def __str__(self):
+        return f"Image for {self.product.name}"
+

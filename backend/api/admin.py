@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, Product, Order, OrderItem, Cart, CartItem, Review, Category
+from .models import User, Product, Order, OrderItem, Cart, CartItem, Review, Category, ProductImage
 
 # Optionally, you can create custom admin classes to customize the admin interface
 class CategoryAdmin(admin.ModelAdmin):
@@ -39,6 +39,10 @@ class ReviewAdmin(admin.ModelAdmin):
     search_fields = ('product__name', 'user__username')
 
 
+class ProductImageAdmin(admin.ModelAdmin):
+    list_display = ('product', 'image')
+    search_fields = ('product__name',)
+
 # Register your models here.
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
@@ -47,6 +51,7 @@ admin.site.register(OrderItem, OrderItemAdmin)
 admin.site.register(Cart, CartAdmin)
 admin.site.register(CartItem, CartItemAdmin)
 admin.site.register(Review, ReviewAdmin)
+admin.site.register(ProductImage, ProductImageAdmin)
 
 
 # If you have extended the User model and want to use Django's built-in User admin:

@@ -7,10 +7,21 @@ import { addToCart } from '../store/slices/cartSlice';
 import { useNavigate } from 'react-router-dom';
 import './ProductCard.css'; // Ensure this is imported
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
+    };
 
     const handleAddToCart = (e: React.MouseEvent) => {
         e.stopPropagation(); // Prevents the click event from reaching the card
@@ -20,15 +31,17 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
     const handleCardClick = () => {
         navigate(`/product/${product.id}`);
     };
+    console.log(product.images.map(image => image.image));
 
     return (
         <Card className="product-card" onClick={handleCardClick}>
-            <CardMedia
-                component="img"
-                height="500"
-                image={product.image}
-                alt={product.name}
-            />
+            <Slider {...settings}>
+                {product.images.map((image, index) => (
+                    <div key={index}>
+                        <img src={image.image} alt={product.name} style={{ width: '100%' }} />
+                    </div>
+                ))}
+            </Slider>
             <CardContent className="card-content">
                 <Typography gutterBottom variant="h6" component="h2" className="product-name">
                     {product.name}

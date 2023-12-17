@@ -31,7 +31,9 @@
     "react-plotly.js": "^2.6.0",
     "react-redux": "^9.0.4",
     "react-router-dom": "^6.20.1",
+    "react-slick": "^0.29.0",
     "redux-persist": "^6.0.0",
+    "slick-carousel": "^1.8.1",
     "three": "^0.159.0"
   },
   "devDependencies": {
@@ -41,6 +43,7 @@
     "@types/react-dom": "^18.2.17",
     "@types/react-plotly.js": "^2.6.3",
     "@types/react-router-dom": "^5.3.3",
+    "@types/react-slick": "^0.23.12",
     "@types/three": "^0.159.0",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",

@@ -1,6 +1,6 @@
 # api/serializers.py
 from rest_framework import serializers
-from .models import User, Product, Order, OrderItem, Cart, CartItem, Review, Category
+from .models import User, Product, Order, OrderItem, Cart, CartItem, Review, Category, ProductImage
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -15,10 +15,18 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class ProductImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductImage
+        fields = ['image']
+
+
 class ProductSerializer(serializers.ModelSerializer):
+    images = ProductImageSerializer(many=True, read_only=True)
+
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = ['id', 'name', 'description', 'price', 'size', 'color', 'material', 'brand', 'category', 'stock', 'images']
 
 
 class OrderSerializer(serializers.ModelSerializer):

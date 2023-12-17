@@ -17,7 +17,7 @@ export interface Category {
     material: string;
     brand: string;
     stock: number;
-    image: string;
+    images: { image: string }[];  // Update this line
     category: Category;
   }
   
