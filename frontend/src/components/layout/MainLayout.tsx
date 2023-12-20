@@ -2,6 +2,9 @@ import React, { ReactNode } from 'react';
 import { Box, Container, Typography} from '@mui/material';
 import NavBar from './NavBar';
 import NavBarTop from './NavBarTop';
+import AnimateOnScroll from '../homepage/AnimateOnScroll';
+import Footer from '../homepage/Footer';
+import NewsletterSignUp from '../homepage/NewsletterSignUp';
 
 const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {    
 
@@ -21,9 +24,8 @@ const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
                 <Container maxWidth={false} sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
                     {children}
                 </Container>
-                <Box component="footer" sx={{ textAlign: 'center', py: 2, mt: 4, borderTop: 1, borderColor: 'divider' }}>
-                    <Typography variant="body2">© 2023 My Application</Typography>
-                </Box>
+                <AnimateOnScroll className="section"><NewsletterSignUp /></AnimateOnScroll>
+                <AnimateOnScroll><Footer /></AnimateOnScroll>
             </Box>
         </Box>
     );

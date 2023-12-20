@@ -14,6 +14,7 @@ import { IconButton } from '@mui/material';
 import { ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material';
 import { styled } from '@mui/system';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ProductTabs from './ProductTabs';
 
 
 interface ArrowProps {
@@ -122,6 +123,7 @@ const ProductDetailPage: React.FC = () => {
                     <Button variant="contained" size="small" onClick={handleAddToCart} startIcon={<ShoppingCartIcon />}>Add to Cart</Button>
                 </Grid>
             </Grid>
+            <ProductTabs product={product}/>
         </Box>
     );
 };

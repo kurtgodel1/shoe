@@ -34,8 +34,6 @@ const HomePage: React.FC = () => {
             <AnimateOnScroll className="section"><PromotionalBanner /></AnimateOnScroll>
             <AnimateOnScroll className="section"><TestimonialsSection /></AnimateOnScroll>
             <AnimateOnScroll className="section"><BlogSection /></AnimateOnScroll>
-            <AnimateOnScroll className="section"><NewsletterSignUp /></AnimateOnScroll>
-            <AnimateOnScroll><Footer /></AnimateOnScroll>
             {/* You can add more sections here like categories, promotions, etc. */}
         </Box>
     );

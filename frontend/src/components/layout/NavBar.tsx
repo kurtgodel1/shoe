@@ -1,7 +1,6 @@
 import React from 'react';
 import { AppBar, Toolbar, Box } from '@mui/material';
 import { styled, alpha } from '@mui/material/styles';
-import UserDropdown from './UserDropdown';
 import HomeMenu from './HomeMenu';
 
 const NavBar: React.FC = () => {
@@ -22,11 +21,13 @@ const NavBar: React.FC = () => {
             <Toolbar>
                 <Box sx={{ flexGrow: 1 }} />
                 <HomeMenu />
+                <Box sx={{ flexGrow: .1 }} />
                 <HomeMenu />
+                <Box sx={{ flexGrow: .1 }} />
                 <HomeMenu />
+                <Box sx={{ flexGrow: .1 }} />
                 <HomeMenu />
-                <HomeMenu />
-                <HomeMenu />
+                <Box sx={{ flexGrow: .1 }} />
                 <HomeMenu />
                 <Box sx={{ flexGrow: 1 }} />
             </Toolbar>
