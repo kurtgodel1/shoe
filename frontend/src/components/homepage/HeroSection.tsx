@@ -1,9 +1,9 @@
 // HeroSection.tsx
 import Carousel from 'react-material-ui-carousel';
 import { Paper, Button, Typography } from '@mui/material';
-import ayakImage from './7.jpg';
-import ayakImage2 from './ayak2.jpeg';
 import './HeroSection.css';
+import vangogh1 from '../../../public/images/vangogh1.png';
+import vangogh2 from '../../../public/images/vangogh2.png';
 
 interface ItemProps {
     item: {
@@ -19,12 +19,12 @@ const HeroSection : React.FC = () => {
         {
             name: "Discover Our Latest Collection",
             description: "Check out the latest trends in our collection.",
-            imgPath: ayakImage,
+            imgPath: vangogh1,
         },
         {
             name: "Discover Our Latest Collection",
             description: "Check out the latest trends in our collection.",
-            imgPath: ayakImage2,
+            imgPath: vangogh2,
         },
         // Add more items as needed
     ];

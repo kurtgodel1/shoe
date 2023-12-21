@@ -17,8 +17,7 @@ const HomePage: React.FC = () => {
 
     return (
         <Box sx={{ flexGrow: 1, width: '100%'  }}>
-            <AnimateOnScroll className="section">
-                <Grid container spacing={2}>
+                <Grid container spacing={2} sx={{ marginBottom: '10rem' }}>
                     <Grid item xs={6}>
                         <HeroSection />
                     </Grid>
@@ -26,7 +25,6 @@ const HomePage: React.FC = () => {
                         <HeroSectionRight />
                     </Grid>
                 </Grid>
-            </AnimateOnScroll>
             <AnimateOnScroll className="section"><FeaturedProducts /></AnimateOnScroll>
             <AnimateOnScroll className="section"><CategoriesSection /></AnimateOnScroll>
             <AnimateOnScroll className="section"><PromotionalBanner /></AnimateOnScroll>

@@ -35,7 +35,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
     return (
         <Card className="product-card">
             <Slider {...settings} >
-                {product.images.map((image, index) => (
+                {product.images.slice(0, 2).map((image, index) => (
                     <div key={index} onClick={(e) => e.stopPropagation()}>
                         <img src={image.image} alt={product.name} style={{ width: '100%' }} onClick={handleCardClick}/>
                     </div>

@@ -1,7 +1,7 @@
 /* ProductCard.css */
 .product-card {
     font-family: 'Open Sans', sans-serif; /* Your chosen font */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
     cursor: pointer;
     position: relative; /* Needed for positioning the add-to-cart button */
     display: flex;
@@ -9,7 +9,7 @@
     justify-content: space-between; /* Distributes space evenly */
     width: 350px; /* Set your desired width */
     height: 600px; /* Set your desired height */
-    border-radius: 0 !important;
+    border-radius: 30px !important;
     box-shadow: 0 0 0 rgba(0, 0, 0, 0.2) !important;
 
 }
@@ -30,7 +30,7 @@
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-1rem);
 }
 
 .card-actions {
@@ -91,7 +91,7 @@
 
 .product-card:hover .add-to-cart-button {
     opacity: 1;
-    transform: translateX(-50%) translateY(-500%); /* Adjust this value to control how high the button moves */
+    transform: translateX(-50%) translateY(-600%); /* Adjust this value to control how high the button moves */
 }
 
 .card-actions {
