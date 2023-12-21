@@ -7,8 +7,6 @@ import CategoriesSection from '../components/homepage/CategoriesSection';
 import PromotionalBanner from '../components/homepage/PromotionalBanner';
 import TestimonialsSection from '../components/homepage/TestimonialsSection';
 import BlogSection from '../components/homepage/BlogSection';
-import NewsletterSignUp from '../components/homepage/NewsletterSignUp';
-import Footer from '../components/homepage/Footer';
 import AnimateOnScroll from '../components/homepage/AnimateOnScroll';
 import './HomePage.css';
 import { Grid } from '@mui/material';

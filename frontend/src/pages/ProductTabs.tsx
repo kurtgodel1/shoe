@@ -30,8 +30,8 @@ function TabPanel(props: TabPanelProps) {
 const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
     const [value, setValue] = useState(0);
 
-  const handleChange = (event: React.ChangeEvent<unknown>, newValue: number) => {
-    setValue(newValue);
+    const handleChange = (_: React.ChangeEvent<unknown>, newValue: number) => {
+      setValue(newValue);
   };
 
   return (
