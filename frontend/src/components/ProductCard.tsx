@@ -46,7 +46,7 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
                     {product.name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary" className="product-description">
-                    {product.price}
+                    ${product.price}
                 </Typography>
             </CardContent>
             <div className="add-to-cart-button">

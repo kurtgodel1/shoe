@@ -4,7 +4,7 @@ const dev = {
   };
   
 const prod = {
-    API_URL: 'https://projectgodel-9ba604cd888b.herokuapp.com',
+    API_URL: 'https://shoesale-1ebb58ec0831.herokuapp.com/',
   };
   
 const config = process.env.NODE_ENV === 'development' ? dev : prod;

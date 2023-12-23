@@ -14,7 +14,7 @@ const TestimonialsSection: React.FC = () =>  {
             <Typography variant="h4" sx={{ margin: 2 }}>What Our Customers Say</Typography>
             <Grid container spacing={2}>
                 {testimonials.map(testimonial => (
-                    <Grid item key={testimonial.id} xs={12} sm={6}>
+                    <Grid item key={testimonial.id} xs={12} sm={12}>
                         <Paper sx={{ padding: 2 }}>
                             <Typography variant="body1">"{testimonial.text}"</Typography>
                             <Typography variant="body2" sx={{ marginTop: 1 }}>
