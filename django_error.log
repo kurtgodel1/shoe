@@ -172,3 +172,261 @@ Traceback (most recent call last):
     raise FieldError(
 django.core.exceptions.FieldError: Unsupported lookup 'icontains' for ForeignKey or join on the field not permitted.
 ERROR 2023-12-17 14:58:38,730 basehttp "GET /admin/api/product/?q=erkek HTTP/1.1" 500 191491
+ERROR 2023-12-23 13:36:27,232 log Internal Server Error: /admin/api/productimage/add/
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/views.py", line 84, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/options.py", line 688, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/options.py", line 1886, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/options.py", line 1747, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/options.py", line 1798, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/options.py", line 1227, in save_model
+    obj.save()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1821, in execute_sql
+    for sql, params in self.as_sql():
+                       ^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1747, in as_sql
+    self.prepare_value(field, self.pre_save_val(field, obj))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1695, in pre_save_val
+    return field.pre_save(obj, add=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/fields/files.py", line 317, in pre_save
+    file.save(file.name, file.file, save=False)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/fields/files.py", line 93, in save
+    self.name = self.storage.save(name, content, max_length=self.field.max_length)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/files/storage/base.py", line 38, in save
+    name = self._save(name, content)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/storages/backends/s3.py", line 494, in _save
+    obj.upload_fileobj(content, ExtraArgs=params, Config=self.transfer_config)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/boto3/s3/inject.py", line 731, in object_upload_fileobj
+    return self.meta.client.upload_fileobj(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/boto3/s3/inject.py", line 642, in upload_fileobj
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/s3transfer/futures.py", line 103, in result
+    return self._coordinator.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/s3transfer/futures.py", line 266, in result
+    raise self._exception
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/s3transfer/tasks.py", line 139, in __call__
+    return self._execute_main(kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/s3transfer/tasks.py", line 162, in _execute_main
+    return_value = self._main(**kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/s3transfer/upload.py", line 764, in _main
+    client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/botocore/client.py", line 553, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/botocore/client.py", line 989, in _make_api_call
+    http, parsed_response = self._make_request(
+                            ^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/botocore/client.py", line 1015, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/botocore/endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/botocore/endpoint.py", line 198, in _send_request
+    request = self.create_request(request_dict, operation_model)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/botocore/endpoint.py", line 134, in create_request
+    self._event_emitter.emit(
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/botocore/hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/botocore/hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/botocore/hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+               ^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/botocore/signers.py", line 105, in handler
+    return self.sign(operation_name, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/botocore/signers.py", line 195, in sign
+    auth.add_auth(request)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/botocore/auth.py", line 418, in add_auth
+    raise NoCredentialsError()
+botocore.exceptions.NoCredentialsError: Unable to locate credentials
+ERROR 2023-12-23 13:36:27,455 basehttp "POST /admin/api/productimage/add/ HTTP/1.1" 500 289505
+ERROR 2023-12-24 10:59:22,728 log Internal Server Error: /admin/api/category/add/
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/views.py", line 84, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/options.py", line 688, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/options.py", line 1886, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/options.py", line 1747, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/options.py", line 1798, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/contrib/admin/options.py", line 1227, in save_model
+    obj.save()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1821, in execute_sql
+    for sql, params in self.as_sql():
+                       ^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1747, in as_sql
+    self.prepare_value(field, self.pre_save_val(field, obj))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1695, in pre_save_val
+    return field.pre_save(obj, add=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/fields/files.py", line 317, in pre_save
+    file.save(file.name, file.file, save=False)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/fields/files.py", line 93, in save
+    self.name = self.storage.save(name, content, max_length=self.field.max_length)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/files/storage/base.py", line 38, in save
+    name = self._save(name, content)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/storages/backends/s3.py", line 494, in _save
+    obj.upload_fileobj(content, ExtraArgs=params, Config=self.transfer_config)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/boto3/s3/inject.py", line 731, in object_upload_fileobj
+    return self.meta.client.upload_fileobj(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/boto3/s3/inject.py", line 642, in upload_fileobj
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/s3transfer/futures.py", line 103, in result
+    return self._coordinator.result()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/s3transfer/futures.py", line 266, in result
+    raise self._exception
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/s3transfer/tasks.py", line 139, in __call__
+    return self._execute_main(kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/s3transfer/tasks.py", line 162, in _execute_main
+    return_value = self._main(**kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/s3transfer/upload.py", line 764, in _main
+    client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/botocore/client.py", line 553, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/botocore/client.py", line 989, in _make_api_call
+    http, parsed_response = self._make_request(
+                            ^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/botocore/client.py", line 1015, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/botocore/endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/botocore/endpoint.py", line 198, in _send_request
+    request = self.create_request(request_dict, operation_model)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/botocore/endpoint.py", line 134, in create_request
+    self._event_emitter.emit(
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/botocore/hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/botocore/hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/botocore/hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+               ^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/botocore/signers.py", line 105, in handler
+    return self.sign(operation_name, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/botocore/signers.py", line 195, in sign
+    auth.add_auth(request)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/botocore/auth.py", line 418, in add_auth
+    raise NoCredentialsError()
+botocore.exceptions.NoCredentialsError: Unable to locate credentials
+ERROR 2023-12-24 10:59:22,813 basehttp "POST /admin/api/category/add/?_to_field=id&_popup=1 HTTP/1.1" 500 290307
