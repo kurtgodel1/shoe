@@ -1,13 +1,13 @@
 {
-    "routes": [
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/index.html" }
+    ],
+    "headers": [
       {
-        "src": "/static/(.*)",
-        "dest": "/static/$1"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "/index.html",
-        "continue": true
+        "source": "/(.*)",
+        "headers": [
+          { "key": "Cache-Control", "value": "max-age=0, must-revalidate, no-cache, no-store, private" }
+        ]
       }
     ]
   }
