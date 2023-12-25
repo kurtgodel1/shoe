@@ -8,8 +8,8 @@ import ProductDetailPage from './pages/ProductDetailPage';
 import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
 import ProductListingPage from './pages/ProductListingPage';
-import SignInSide from './components/auth_components/SigninSide';
 import SignUpSide from './components/auth_components/SignUpSide';
+import SignInSide from './components/auth_components/SignInSide';
 
 // import './App.css
 
