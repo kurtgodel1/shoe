@@ -4,6 +4,8 @@ from .models import User, Product, Order, OrderItem, Cart, CartItem, Review, Cat
 from .serializers import UserSerializer, ProductSerializer, OrderSerializer
 from .serializers import OrderItemSerializer, CartSerializer, CartItemSerializer, ReviewSerializer
 from .serializers import CategorySerializer
+from rest_framework.pagination import LimitOffsetPagination
+
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -24,15 +26,14 @@ class ProductViewSet(viewsets.ModelViewSet):
     logger.info("ProductViewSet called")
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    pagination_class = LimitOffsetPagination
+
 
     def get_queryset(self):
-        queryset = Product.objects.all()
-        limit = self.request.query_params.get('limit')
+        queryset = super().get_queryset()
         category = self.request.query_params.get('category')
         if category is not None:
             queryset = queryset.filter(category__name=category)
-        if limit is not None:
-            queryset = queryset[:int(limit)]
         return queryset
 
 

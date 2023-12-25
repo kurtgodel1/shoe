@@ -34,22 +34,10 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
         navigate(`/product/${product.id}`);
     };
 
-    interface Image {
-        image: string;
-      }
-
-    const getRandomImages = (images: Image[], count: number) => {
-        const indices = new Set<number>();
-        while(indices.size < count) {
-            indices.add(Math.floor(Math.random() * images.length));
-        }
-        return Array.from(indices).map(index => images[index]);
-    };
-
     return (
         <Card className="product-card">
             <Slider {...settings} >
-            {getRandomImages(product.images, 1).map((image, index) => (
+            {product.images.slice(0,2).map((image, index) => (
                     <div key={index} onClick={(e) => e.stopPropagation()}>
                                {image ? (
                         <img src={image.image} alt={product.name} style={{ width: '100%' }} onClick={handleCardClick}/>

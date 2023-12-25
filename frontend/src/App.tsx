@@ -6,10 +6,10 @@ import RegistrationForm from './components/auth_components/RegistrationForm';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import MainLayout from './components/layout/MainLayout';
 import HomePage from './pages/HomePage';
-import ProductListingPage from './pages/ProductListingPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
+import ProductListingPage from './pages/ProductListingPage';
 
 // import './App.css
 

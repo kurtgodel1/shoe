@@ -1,15 +1,13 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import axios from 'axios';
-import { Box, Typography} from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { Product } from '../types/types';
 import ImageSlider from '../components/ImageSlider';
 import config from '../config';
 import CategoryFilter from '../components/CategoryFilter';
-import ImageSliderSkeleton from '../components/ImageSliderSkeleton'; // Import the skeleton component
 
 
-
-const ProductListingPage: React.FC = () => {
+const ProductListingPage2: React.FC = () => {
     const [productGroups, setProductGroups] = useState<Product[][]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [hasMore, setHasMore] = useState<boolean>(true);
@@ -19,7 +17,7 @@ const ProductListingPage: React.FC = () => {
     const [selectedCategory, setSelectedCategory] = useState('');
 
 
-    const lastElementRef = useCallback((node: HTMLDivElement | null) => {
+    const lastElementRef = useCallback(node => {
         if (loading || !hasMore) return;
         if (observer.current) observer.current.disconnect();
         observer.current = new IntersectionObserver(entries => {
@@ -82,9 +80,9 @@ const ProductListingPage: React.FC = () => {
                 <ImageSlider key={index} products={group} />
             ))}
             <div ref={lastElementRef} />
-            {loading && <ImageSliderSkeleton />}
+            {loading && <Typography>Loading more products...</Typography>}
         </Box>
     );
 };
 
-export default ProductListingPage;
+export default ProductListingPage2;

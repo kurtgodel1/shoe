@@ -6,20 +6,28 @@ import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import './FeaturedProducts.css'
 import ImageSlider from '../ImageSlider';
+import ImageSliderSkeleton from '../ImageSliderSkeleton';
 
 
 const FeaturedProducts : React.FC = () => {
     const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
     const navigate = useNavigate();
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         // Example API calls, replace with your actual API endpoints
-        axios.get<Product[]>(`${config.API_URL}/api/products?limit=6`)
-            .then(response => setFeaturedProducts(response.data))
-            .catch(error => console.error('Error fetching featured products', error));
+        axios.get<Product[]>(`${config.API_URL}/api/products`)
+            .then(response => {
+                setFeaturedProducts(response.data);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error('Error fetching featured products', error);
+                setLoading(false);
+            });
 
     }, []);
 
@@ -30,10 +38,14 @@ const FeaturedProducts : React.FC = () => {
     return (
         <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <h2>Featured Products</h2>
+                <Typography variant="h4">Featured Products</Typography>
                 <Button onClick={handleSeeMoreClick}>See More</Button>
             </div>
-            <ImageSlider products={featuredProducts} />
+            {loading ? (
+                <ImageSliderSkeleton />
+            ) : (
+                <ImageSlider products={featuredProducts} />
+            )}
         </div>
     );
 };
