@@ -1,32 +1,41 @@
-// ProductListingPage.tsx
 import React, { useState, useEffect } from 'react';
-import { Grid, Box, Typography } from '@mui/material';
-import ProductCard from '../components/ProductCard'; // Update the import path as needed
-import { Product } from '../types/types';
 import axios from 'axios';
+import {  Typography, Box } from '@mui/material';
 import config from '../config';
+import { Product } from '../types/types';
+import CategoryFilter from '../components/CategoryFilter';
+import ImageSlider from '../components/ImageSlider';
 
 const ProductListingPage: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
+    const [selectedCategory, setSelectedCategory] = useState('');
 
     useEffect(() => {
-        axios.get<Product[]>(`${config.API_URL}/api/products`)
-            .then(response => setProducts(response.data))
-            .catch(error => console.error('Error fetching products', error));
-    }, []);
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get(`${config.API_URL}/api/products`, {
+                    params: { category: selectedCategory }
+                });
+                setProducts(response.data);
+            } catch (error) {
+                console.error('Error fetching products', error);
+            }
+        };
+
+        fetchProducts();
+    }, [selectedCategory]);
+
+    const handleFilterChange = (category: string) => {
+        setSelectedCategory(category);
+    };
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1, padding: 2 }}>
+            <CategoryFilter onFilterChange={handleFilterChange} />
             <Typography variant="h4" sx={{ margin: 2 }}>
-                All Products
+                Products
             </Typography>
-            <Grid container spacing={2}>
-                {products.map(product => (
-                    <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
-                        <ProductCard product={product} />
-                    </Grid>
-                ))}
-            </Grid>
+            <ImageSlider products={products} />
         </Box>
     );
 };

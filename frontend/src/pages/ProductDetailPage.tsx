@@ -15,6 +15,7 @@ import { ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material';
 import { styled } from '@mui/system';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import ProductTabs from './ProductTabs';
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 interface ArrowProps {
@@ -39,7 +40,7 @@ const ProductDetailPage: React.FC = () => {
     }, [productId]);
 
     if (!product) {
-        return <Typography>Loading...</Typography>; // Or some loading component
+        return <CircularProgress />; // Or some loading component
     }
 
 
@@ -89,6 +90,7 @@ const ProductDetailPage: React.FC = () => {
     };
 
     return (
+        <div>
         <Box sx={{ padding: 2 }}>
             <Grid container spacing={2}>
                 <Grid item xs={12} md={6}>
@@ -125,6 +127,7 @@ const ProductDetailPage: React.FC = () => {
             </Grid>
             <ProductTabs product={product}/>
         </Box>
+        </div>
     );
 };
 

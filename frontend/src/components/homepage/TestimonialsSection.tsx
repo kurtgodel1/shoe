@@ -5,7 +5,7 @@ import { Grid, Typography, Paper } from '@mui/material';
 const TestimonialsSection: React.FC = () =>  {
     const testimonials = [
         // Array of testimonials. Replace with real data.
-        { id: 1, author: "Jane Doe", text: "Love these shoes! Comfortable and stylish!" },
+        { id: 1, author: "Jane Doe", text: "Love these pics! Lovely and colorful!" },
         // More testimonials...
     ];
 

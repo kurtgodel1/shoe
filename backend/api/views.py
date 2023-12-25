@@ -25,6 +25,16 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
+    def get_queryset(self):
+        queryset = Product.objects.all()
+        limit = self.request.query_params.get('limit')
+        category = self.request.query_params.get('category')
+        if category is not None:
+            queryset = queryset.filter(category__name=category)
+        if limit is not None:
+            queryset = queryset[:int(limit)]
+        return queryset
+
 
 class OrderViewSet(viewsets.ModelViewSet):
     logger.info("OrderViewSet called")

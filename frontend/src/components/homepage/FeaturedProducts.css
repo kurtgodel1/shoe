@@ -1,0 +1,15 @@
+/* Custom styles for react-slick buttons */
+.slick-prev, .slick-next {
+    font-size: 50px; /* Bigger arrow size */
+    width: 50px; /* Bigger button area for easier click */
+    height: 50px;
+    z-index: 1;
+}
+
+.slick-prev {
+    left: -60px; /* Adjust position if needed */
+}
+
+.slick-next {
+    right: -60px; /* Adjust position if needed */
+}

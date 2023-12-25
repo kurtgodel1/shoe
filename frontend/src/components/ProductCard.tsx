@@ -10,6 +10,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Skeleton from '@mui/material/Skeleton';
+
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
     const dispatch = useDispatch();
@@ -32,12 +34,28 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
         navigate(`/product/${product.id}`);
     };
 
+    interface Image {
+        image: string;
+      }
+
+    const getRandomImages = (images: Image[], count: number) => {
+        const indices = new Set<number>();
+        while(indices.size < count) {
+            indices.add(Math.floor(Math.random() * images.length));
+        }
+        return Array.from(indices).map(index => images[index]);
+    };
+
     return (
         <Card className="product-card">
             <Slider {...settings} >
-                {product.images.slice(0, 2).map((image, index) => (
+            {getRandomImages(product.images, 1).map((image, index) => (
                     <div key={index} onClick={(e) => e.stopPropagation()}>
+                               {image ? (
                         <img src={image.image} alt={product.name} style={{ width: '100%' }} onClick={handleCardClick}/>
+                    ) : (
+                        <Skeleton variant="rectangular" width={210} height={118} />
+                    )}
                     </div>
                 ))}
             </Slider>

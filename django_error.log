@@ -536,3 +536,2036 @@ Traceback (most recent call last):
     raise ImproperlyConfigured(
 django.core.exceptions.ImproperlyConfigured: settings.DATABASES is improperly configured. Please supply the ENGINE value. Check settings documentation for more details.
 ERROR 2023-12-24 14:39:11,872 basehttp "GET / HTTP/1.1" 500 146449
+ERROR 2023-12-24 16:04:25,838 log Internal Server Error: /api/categories/
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/middleware.py", line 175, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 70, in __call__
+    self.process_request(request)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 120, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/models.py", line 190, in save
+    super().save(*args, **kwargs)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1820, in execute_sql
+    with self.connection.cursor() as cursor:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+ERROR 2023-12-24 16:04:25,866 basehttp "GET /api/categories/ HTTP/1.1" 500 221581
+ERROR 2023-12-24 16:04:28,812 log Internal Server Error: /api/categories/
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/middleware.py", line 175, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 70, in __call__
+    self.process_request(request)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 120, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/models.py", line 190, in save
+    super().save(*args, **kwargs)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1820, in execute_sql
+    with self.connection.cursor() as cursor:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+ERROR 2023-12-24 16:04:28,835 basehttp "GET /api/categories/ HTTP/1.1" 500 221581
+ERROR 2023-12-24 16:04:32,891 log Internal Server Error: /api/products/
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/middleware.py", line 175, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 70, in __call__
+    self.process_request(request)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 120, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/models.py", line 190, in save
+    super().save(*args, **kwargs)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1820, in execute_sql
+    with self.connection.cursor() as cursor:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+ERROR 2023-12-24 16:04:32,911 basehttp "GET /api/products/ HTTP/1.1" 500 221549
+ERROR 2023-12-24 16:06:25,531 log Internal Server Error: /api/categories/
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/middleware.py", line 175, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 70, in __call__
+    self.process_request(request)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 120, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/models.py", line 190, in save
+    super().save(*args, **kwargs)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1820, in execute_sql
+    with self.connection.cursor() as cursor:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+ERROR 2023-12-24 16:06:25,554 basehttp "GET /api/categories/ HTTP/1.1" 500 221581
+ERROR 2023-12-24 16:06:28,593 log Internal Server Error: /api/categories/
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/middleware.py", line 175, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 70, in __call__
+    self.process_request(request)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 120, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/models.py", line 190, in save
+    super().save(*args, **kwargs)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1820, in execute_sql
+    with self.connection.cursor() as cursor:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+ERROR 2023-12-24 16:06:28,618 basehttp "GET /api/categories/ HTTP/1.1" 500 221581
+ERROR 2023-12-24 16:06:32,111 log Internal Server Error: /api/products/
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/middleware.py", line 175, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 70, in __call__
+    self.process_request(request)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 120, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/models.py", line 190, in save
+    super().save(*args, **kwargs)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1820, in execute_sql
+    with self.connection.cursor() as cursor:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+ERROR 2023-12-24 16:06:32,134 basehttp "GET /api/products/ HTTP/1.1" 500 221549
+ERROR 2023-12-25 10:02:55,422 log Internal Server Error: /api/products/
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/middleware.py", line 175, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 70, in __call__
+    self.process_request(request)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 120, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/models.py", line 190, in save
+    super().save(*args, **kwargs)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1820, in execute_sql
+    with self.connection.cursor() as cursor:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+ERROR 2023-12-25 10:02:55,434 log Internal Server Error: /api/categories/
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/middleware.py", line 175, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 70, in __call__
+    self.process_request(request)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 120, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/models.py", line 190, in save
+    super().save(*args, **kwargs)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1820, in execute_sql
+    with self.connection.cursor() as cursor:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+ERROR 2023-12-25 10:02:55,461 basehttp "GET /api/products/?limit=3 HTTP/1.1" 500 222145
+ERROR 2023-12-25 10:02:55,486 basehttp "GET /api/categories/ HTTP/1.1" 500 221733
+ERROR 2023-12-25 10:02:58,477 log Internal Server Error: /api/products/
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/middleware.py", line 175, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 70, in __call__
+    self.process_request(request)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 120, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/models.py", line 190, in save
+    super().save(*args, **kwargs)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1820, in execute_sql
+    with self.connection.cursor() as cursor:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+ERROR 2023-12-25 10:02:58,580 basehttp "GET /api/products/?limit=3 HTTP/1.1" 500 222145
+ERROR 2023-12-25 10:02:58,660 log Internal Server Error: /api/categories/
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/middleware.py", line 175, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 70, in __call__
+    self.process_request(request)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 120, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/models.py", line 190, in save
+    super().save(*args, **kwargs)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1820, in execute_sql
+    with self.connection.cursor() as cursor:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+ERROR 2023-12-25 10:02:58,676 basehttp "GET /api/categories/ HTTP/1.1" 500 221733
+ERROR 2023-12-25 10:04:47,546 log Internal Server Error: /api/products
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/middleware.py", line 175, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 70, in __call__
+    self.process_request(request)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 120, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/models.py", line 190, in save
+    super().save(*args, **kwargs)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1820, in execute_sql
+    with self.connection.cursor() as cursor:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+ERROR 2023-12-25 10:04:47,575 basehttp "GET /api/products?limit=3 HTTP/1.1" 500 223589
+ERROR 2023-12-25 10:04:51,846 log Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/middleware.py", line 175, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 70, in __call__
+    self.process_request(request)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 120, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/models.py", line 190, in save
+    super().save(*args, **kwargs)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1820, in execute_sql
+    with self.connection.cursor() as cursor:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+ERROR 2023-12-25 10:04:51,872 basehttp "GET /favicon.ico HTTP/1.1" 500 222777
+ERROR 2023-12-25 10:04:59,866 log Internal Server Error: /api/products
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/middleware.py", line 175, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 70, in __call__
+    self.process_request(request)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 120, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/models.py", line 190, in save
+    super().save(*args, **kwargs)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1820, in execute_sql
+    with self.connection.cursor() as cursor:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+ERROR 2023-12-25 10:04:59,890 basehttp "GET /api/products HTTP/1.1" 500 223145
+ERROR 2023-12-25 10:05:04,122 log Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/middleware.py", line 175, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 70, in __call__
+    self.process_request(request)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 120, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/models.py", line 190, in save
+    super().save(*args, **kwargs)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1820, in execute_sql
+    with self.connection.cursor() as cursor:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+ERROR 2023-12-25 10:05:04,148 basehttp "GET /favicon.ico HTTP/1.1" 500 222687
+ERROR 2023-12-25 10:05:05,976 log Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/middleware.py", line 175, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 70, in __call__
+    self.process_request(request)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 120, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/models.py", line 190, in save
+    super().save(*args, **kwargs)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1820, in execute_sql
+    with self.connection.cursor() as cursor:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+ERROR 2023-12-25 10:05:05,996 basehttp "GET / HTTP/1.1" 500 223143
+ERROR 2023-12-25 10:05:10,135 log Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/middleware.py", line 175, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 70, in __call__
+    self.process_request(request)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 120, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/models.py", line 190, in save
+    super().save(*args, **kwargs)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1820, in execute_sql
+    with self.connection.cursor() as cursor:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+ERROR 2023-12-25 10:05:10,160 basehttp "GET /favicon.ico HTTP/1.1" 500 222651
+ERROR 2023-12-25 10:05:23,645 log Internal Server Error: /
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/middleware.py", line 175, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 70, in __call__
+    self.process_request(request)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 120, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/models.py", line 190, in save
+    super().save(*args, **kwargs)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1820, in execute_sql
+    with self.connection.cursor() as cursor:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+ERROR 2023-12-25 10:05:23,674 basehttp "GET / HTTP/1.1" 500 223380
+ERROR 2023-12-25 10:05:27,747 log Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/middleware.py", line 175, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 70, in __call__
+    self.process_request(request)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 120, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/models.py", line 190, in save
+    super().save(*args, **kwargs)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1820, in execute_sql
+    with self.connection.cursor() as cursor:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+ERROR 2023-12-25 10:05:27,770 basehttp "GET /favicon.ico HTTP/1.1" 500 222651
+ERROR 2023-12-25 10:05:30,081 log Internal Server Error: /admin
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/middleware.py", line 175, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 70, in __call__
+    self.process_request(request)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/middleware.py", line 120, in process_request
+    request_model = RequestModelFactory(request).construct_request_model()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/model_factory.py", line 230, in construct_request_model
+    request_model = models.Request.objects.create(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/silk/models.py", line 190, in save
+    super().save(*args, **kwargs)
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/models/sql/compiler.py", line 1820, in execute_sql
+    with self.connection.cursor() as cursor:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 330, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 306, in _cursor
+    self.ensure_connection()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 288, in ensure_connection
+    with self.wrap_database_errors:
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 289, in ensure_connection
+    self.connect()
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/sentry_sdk/integrations/django/__init__.py", line 677, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/base/base.py", line 270, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/django/db/backends/postgresql/base.py", line 275, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/aliosmanyilmaz/opt/anaconda3/envs/shoe/lib/python3.12/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: connection to server at "ec2-34-206-106-3.compute-1.amazonaws.com" (34.206.106.3), port 5432 failed: FATAL:  too many connections for role "ysfjlccmqcwsxa"
+
+ERROR 2023-12-25 10:05:30,103 basehttp "GET /admin HTTP/1.1" 500 223047
