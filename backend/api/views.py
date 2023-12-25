@@ -28,7 +28,6 @@ class ProductViewSet(viewsets.ModelViewSet):
     serializer_class = ProductSerializer
     pagination_class = LimitOffsetPagination
 
-
     def get_queryset(self):
         queryset = super().get_queryset()
         category = self.request.query_params.get('category')
