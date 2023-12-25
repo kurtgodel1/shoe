@@ -4,7 +4,7 @@ import React, { useState, useRef } from 'react';
 import { LoginButton, RegisterButton, LogoutButton } from '../auth_components/AuthButtons';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { Box, Button, Paper, MenuItem, MenuList, Popper, Grow, Menu } from '@mui/material';
+import { Box, Button, Paper, MenuItem, MenuList, Popper, Grow} from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 
