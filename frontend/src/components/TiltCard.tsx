@@ -64,7 +64,7 @@ const TiltCard: React.FC<TiltCardProps> = ({ category }) => {
         rotateX,
         transformStyle: "preserve-3d",
       }}
-      className="relative h-96 w-72 rounded-xl bg-gradient-to-br from-indigo-300 to-violet-100"
+      className="relative h-96 w-72 rounded-xl bg-gradient-to-br"
     >
       <div
         style={{

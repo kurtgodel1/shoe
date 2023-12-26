@@ -10,6 +10,8 @@ import { Button, Typography } from '@mui/material';
 import './FeaturedProducts.css'
 import ImageSlider from '../ImageSlider';
 import ImageSliderSkeleton from '../ImageSliderSkeleton';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 
 
 const FeaturedProducts : React.FC = () => {
@@ -37,9 +39,9 @@ const FeaturedProducts : React.FC = () => {
 
     return (
         <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Typography variant="h4">Featured Products</Typography>
-                <Button onClick={handleSeeMoreClick}>See More</Button>
+            <div className="mb-10" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Typography variant="h4"> <InstagramIcon /> Featured Products</Typography>
+                <Button onClick={handleSeeMoreClick}>See More <KeyboardDoubleArrowRightIcon /> </Button>
             </div>
             {loading ? (
                 <ImageSliderSkeleton />
