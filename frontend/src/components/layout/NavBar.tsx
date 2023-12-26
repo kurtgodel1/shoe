@@ -1,7 +1,9 @@
 import React from 'react';
 import { AppBar, Toolbar, Box } from '@mui/material';
 import { styled, alpha } from '@mui/material/styles';
-import HomeMenu from './HomeMenu';
+import EncryptButton from '../EncryptButton';
+import DottedButton from '../DottedButton';
+import StaggeredDropDown from '../StaggeredDropDown';
 
 const NavBar: React.FC = () => {
 
@@ -19,17 +21,12 @@ const NavBar: React.FC = () => {
     return (
         <AppBarStyled position="static" color="inherit" elevation={0} >
             <Toolbar>
-                <Box sx={{ flexGrow: 1 }} />
-                <HomeMenu />
                 <Box sx={{ flexGrow: .1 }} />
-                <HomeMenu />
+                <EncryptButton />
                 <Box sx={{ flexGrow: .1 }} />
-                <HomeMenu />
+                <DottedButton />
                 <Box sx={{ flexGrow: .1 }} />
-                <HomeMenu />
-                <Box sx={{ flexGrow: .1 }} />
-                <HomeMenu />
-                <Box sx={{ flexGrow: 1 }} />
+                <StaggeredDropDown />
             </Toolbar>
         </AppBarStyled>
     );
