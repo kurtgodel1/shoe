@@ -6,10 +6,11 @@ import { Category } from '../types/types';
 
 
 interface CategoryFilterProps {
+    selectedCategory : string;
     onFilterChange: (value: string) => void;
 }
 
-const CategoryFilter: React.FC<CategoryFilterProps> = ({ onFilterChange }) => {
+const CategoryFilter: React.FC<CategoryFilterProps> = ({ selectedCategory, onFilterChange }) => {
     const [categories, setCategories] = useState<Category[]>([]);
 
     useEffect(() => {
@@ -24,7 +25,7 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({ onFilterChange }) => {
     return (
         <Box>
             <Select
-                defaultValue=""
+                value={selectedCategory}
                 onChange={(e) => onFilterChange(e.target.value)}
                 displayEmpty
             >

@@ -6,18 +6,30 @@ import ImageSlider from '../components/ImageSlider';
 import config from '../config';
 import CategoryFilter from '../components/CategoryFilter';
 import ImageSliderSkeleton from '../components/ImageSliderSkeleton'; // Import the skeleton component
+import { useLocation } from 'react-router-dom';
 
 
+interface ProductListingPageProps {
+    category?: string;
+  }
 
-const ProductListingPage: React.FC = () => {
+  const ProductListingPage: React.FC<ProductListingPageProps> = ({ category = '' }) => {
     const [productGroups, setProductGroups] = useState<Product[][]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [hasMore, setHasMore] = useState<boolean>(true);
     const [offset, setOffset] = useState<number>(0);
     const limit: number = 4;
     const observer = useRef<IntersectionObserver | null>(null);
-    const [selectedCategory, setSelectedCategory] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState(category || "");
 
+    const location = useLocation();
+    const categoryName = location.state?.category;
+
+    useEffect(() => {
+        if (categoryName) {
+            setSelectedCategory(categoryName);
+        }
+    }, [categoryName]);
 
     const lastElementRef = useCallback((node: HTMLDivElement | null) => {
         if (loading || !hasMore) return;
@@ -74,7 +86,7 @@ const ProductListingPage: React.FC = () => {
 
     return (
         <Box sx={{ flexGrow: 1, padding: 2 }}>
-            <CategoryFilter onFilterChange={handleFilterChange} />
+            <CategoryFilter selectedCategory={selectedCategory} onFilterChange={handleFilterChange} />
             <Typography variant="h4" sx={{ margin: 2 }}>
                 Products
             </Typography>

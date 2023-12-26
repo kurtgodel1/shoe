@@ -27,7 +27,7 @@ export const Example = () => {
         "https://articonics.s3.eu-north-1.amazonaws.com/product_images/natureillustration.png",
       ]}
     >
-      <section className="grid h-screen w-full place-content-center bg-white">
+      <section className="grid h-screen w-full place-content-center bg-white" style={{ height: '75vh' }}>
         <p className="flex items-center gap-2 text-3xl font-bold uppercase text-black">
           <FiMousePointer />
           <span>Hover me</span>
@@ -99,8 +99,8 @@ const MouseImageTrail = ({
     const imageWidth = el.offsetWidth / 2;
     const imageHeight = el.offsetHeight / 2;
 
-    el.style.top = `${lastRenderPosition.current.y - 3*imageHeight}px`;
-    el.style.left = `${lastRenderPosition.current.x - 5*imageWidth}px`;
+    el.style.top = `${lastRenderPosition.current.y - 5*imageHeight}px`;
+    el.style.left = `${lastRenderPosition.current.x - 7*imageWidth}px`;
     el.style.zIndex = imageRenderCount.current.toString();
 
     const rotation = Math.random() * rotationRange;
