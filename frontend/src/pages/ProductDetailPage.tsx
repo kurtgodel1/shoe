@@ -1,134 +1,113 @@
-// ProductDetailPage.tsx
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Box, Typography, Button, Grid, CardMedia } from '@mui/material';
 import axios from 'axios';
+import { Box, Typography, Button, Grid} from '@mui/material';
 import { Product } from '../types/types';
 import config from '../config';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../store/slices/cartSlice';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import Slider from 'react-slick';
-import { IconButton } from '@mui/material';
-import { ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material';
-import { styled } from '@mui/system';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, EffectCube } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-cube';
+import { Swiper as SwiperClass } from 'swiper';
+import './ProductDetailPage.css'
 import ProductTabs from './ProductTabs';
-import CircularProgress from '@mui/material/CircularProgress';
 
 
-interface ArrowProps {
-    className?: string;
-    style?: React.CSSProperties;
-    onClick?: () => void;
-}
+const ProductDetailPage = () => {
+  const { productId } = useParams();
+  const [product, setProduct] = useState<Product | null>(null);
+  const dispatch = useDispatch();
+  const [cubeSwiper, setCubeSwiper] = useState<SwiperClass | null>(null); // Correctly typed
 
-const ProductDetailPage: React.FC = () => {
-    const { productId } = useParams<{ productId: string }>();
-    const [product, setProduct] = useState<Product | null>(null);
-    const [selectedImage, setSelectedImage] = useState<string>('');
-    const dispatch = useDispatch();
+  useEffect(() => {
+    axios.get<Product>(`${config.API_URL}/api/products/${productId}`)
+      .then(response => {
+        setProduct(response.data);
+      })
+      .catch(error => console.error('Error fetching product details', error));
+  }, [productId]);
 
+  if (!product) {
+    return <div>Loading...</div>; // Or some loading component
+  }
 
-    useEffect(() => {
-        axios.get<Product>(`${config.API_URL}/api/products/${productId}`)
-        .then(response => {
-            setProduct(response.data);
-            setSelectedImage(response.data.images[0].image); // Set initial image
-        })            .catch(error => console.error('Error fetching product details', error));
-    }, [productId]);
+  const handleAddToCart = () => {
+    console.log('Adding to cart');
+    dispatch(addToCart(product));
+  };
 
-    if (!product) {
-        return <CircularProgress />; // Or some loading component
+  const updateCubeSwiper = (index: number) => {
+    if (cubeSwiper) {
+      cubeSwiper.slideToLoop(index);
     }
+  };
 
-
-    const handleAddToCart = () => {
-      console.log('Adding to cart');
-      dispatch(addToCart(product));
-    };
-    
-    const ArrowButton = styled(IconButton)(({ theme }) => ({
-        position: 'absolute',
-        top: '50%',
-        transform: 'translateY(-50%)',
-        color: theme.palette.common.white,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        zIndex: 1, // Add this line
-        '&:hover': {
-            backgroundColor: 'rgba(0, 0, 0, 0.7)',
-        },
-    }));
-    
-    const NextArrow = (props: ArrowProps) => {
-        const { onClick } = props;
-        return (
-            <ArrowButton style={{ right: '10px' }} onClick={onClick}>
-                <ArrowForwardIos />
-            </ArrowButton>
-        );
-    };
-    
-    const PrevArrow = (props: ArrowProps) => {
-        const { onClick } = props;
-        return (
-            <ArrowButton style={{ left: '10px' }} onClick={onClick}>
-                <ArrowBackIosNew />
-            </ArrowButton>
-        );
-    };
-    
-    const settings = {
-        dots: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: product.images.length < 4 ? product.images.length : 4,
-        slidesToScroll: 1,
-        nextArrow: <NextArrow />,
-        prevArrow: <PrevArrow />,
-    };
-
-    return (
-        <div>
-        <Box sx={{ padding: 2 }}>
-            <Grid container spacing={2}>
-                <Grid item xs={12} md={6}>
-                    <CardMedia
-                        component="img"
-                        image={selectedImage} // Display the selected image
-                        alt={product.name}
-                    />
-                    <Box sx={{ mt:2, position: 'relative', maxWidth: product.images.length < 4 ? `${product.images.length * 10}rem` : '40rem' }}>
-                        <Slider {...settings}>
-                            {product.images.map((image, index) => (
-                                <div key={index}>
-                                    <img
-                                        src={image.image} 
-                                        alt={product.name}
-                                        style={{ width: '9rem', height: '11rem', marginRight: '2rem', cursor: 'pointer' }}
-                                        onClick={() => setSelectedImage(image.image)}
-                                    />
-                                </div>
-                            ))}
-                        </Slider>
-                    </Box>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                    <Typography variant="h4">{product.name}</Typography>
-                    <Typography variant="body1" sx={{ my: 2 }}>
-                        {product.description}
-                    </Typography>
-                    <Typography variant="h6" sx={{ mb: 2 }}>
-                        Price: ${product.price}
-                    </Typography>
-                    <Button variant="contained" size="small" onClick={handleAddToCart} startIcon={<ShoppingCartIcon />}>Add to Cart</Button>
-                </Grid>
-            </Grid>
+  return (
+    <div>
+        <Box className="swiperParentContainer" sx={{ padding: 2 }}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+            <Swiper
+              effect={'cube'}
+              loop={true}
+              grabCursor={true}
+              cubeEffect={{
+                "shadow": true,
+                "slideShadows": true,
+                "shadowOffset": 20,
+                "shadowScale": 0.94
+              }}
+              modules={[EffectCube, Pagination]}
+              className="mySwiper"
+              onSwiper={(swiper) => setCubeSwiper(swiper)}
+              >
+              {product.images.map((image, index) => (
+                <SwiperSlide key={index}>
+                  <img src={image.image} alt={product.name} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            <Swiper
+                loop={true}
+              slidesPerView={4}
+              spaceBetween={0}
+              navigation
+              modules={[Navigation]}
+              className="mySwiper navSwiper mt-6"
+            >
+              {product.images.map((image, index) => (
+                <SwiperSlide key={index}>
+                  <img
+                    src={image.image}
+                    alt={product.name}
+                    style={{ width: '100%', cursor: 'pointer' }}
+                    onClick={() => updateCubeSwiper(index)}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Typography variant="h4">{product.name}</Typography>
+            <Typography variant="body1" sx={{ my: 2 }}>
+              {product.description}
+            </Typography>
+            <Typography variant="h6" sx={{ mb: 2 }}>
+              Price: ${product.price}
+            </Typography>
+            <Button variant="contained" size="small" onClick={handleAddToCart}>
+              Add to Cart
+            </Button>
             <ProductTabs product={product}/>
-        </Box>
-        </div>
-    );
+          </Grid>
+        </Grid>
+      </Box>
+    </div>
+  );
 };
 
 export default ProductDetailPage;

@@ -35,7 +35,7 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%' }} className="mt-20 mb-20">
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="product details tabs">
           <Tab label="Description" />
