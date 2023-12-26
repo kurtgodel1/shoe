@@ -1,7 +1,6 @@
 import React from 'react';
 import { AppBar, Toolbar, Box } from '@mui/material';
 import { styled, alpha } from '@mui/material/styles';
-import EncryptButton from '../EncryptButton';
 import DottedButton from '../DottedButton';
 import StaggeredDropDown from '../StaggeredDropDown';
 
@@ -21,8 +20,6 @@ const NavBar: React.FC = () => {
     return (
         <AppBarStyled position="static" color="inherit" elevation={0} >
             <Toolbar>
-                <Box sx={{ flexGrow: .1 }} />
-                <EncryptButton />
                 <Box sx={{ flexGrow: .1 }} />
                 <DottedButton />
                 <Box sx={{ flexGrow: .1 }} />

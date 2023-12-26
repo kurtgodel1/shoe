@@ -1,16 +1,17 @@
-import { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FiLock } from "react-icons/fi";
 import { motion } from "framer-motion";
-
 
 const TARGET_TEXT = "Articonics";
 const CYCLES_PER_LETTER = 2;
 const SHUFFLE_TIME = 50;
+const ANIMATION_INTERVAL = 5000; // 5 seconds
 
 const CHARS = "!@#$%^&*():{};|,.<>/?";
 
 const EncryptButton = () => {
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const scrambleIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const [text, setText] = useState(TARGET_TEXT);
 
@@ -42,9 +43,19 @@ const EncryptButton = () => {
 
   const stopScramble = () => {
     clearInterval(intervalRef.current || undefined);
-
     setText(TARGET_TEXT);
   };
+
+  useEffect(() => {
+    scrambleIntervalRef.current = setInterval(() => {
+      scramble();
+    }, ANIMATION_INTERVAL);
+
+    return () => {
+      clearInterval(scrambleIntervalRef.current || undefined);
+      stopScramble();
+    };
+  }, []);
 
   return (
     <motion.button
@@ -54,8 +65,6 @@ const EncryptButton = () => {
       whileTap={{
         scale: 0.975,
       }}
-      onMouseEnter={scramble}
-      onMouseLeave={stopScramble}
       className="group relative overflow-hidden rounded-lg border-[1px] border-slate-500 bg-slate-700 px-4 py-2 font-mono font-medium uppercase text-slate-300 transition-colors hover:text-indigo-300"
     >
       <div className="relative z-10 flex items-center gap-2">
@@ -82,3 +91,6 @@ const EncryptButton = () => {
 };
 
 export default EncryptButton;
+
+
+
