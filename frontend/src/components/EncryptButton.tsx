@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FiLock } from "react-icons/fi";
 import { motion } from "framer-motion";
 
@@ -55,7 +55,7 @@ const EncryptButton = () => {
       clearInterval(scrambleIntervalRef.current || undefined);
       stopScramble();
     };
-  }, []);
+  });
 
   return (
     <motion.button
