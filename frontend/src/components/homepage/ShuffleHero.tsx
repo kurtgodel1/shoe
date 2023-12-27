@@ -128,8 +128,14 @@ const ShuffleGrid = () => {
     const [squares, setSquares] = useState(generateSquares());
 
     const shuffleSquares = useCallback(() => {
+      const scrollY = window.scrollY; // Save current scroll position
+
         setSquares(generateSquares());
       
+        requestAnimationFrame(() => {
+          window.scrollTo(0, scrollY);
+        });
+
         timeoutRef.current = window.setTimeout(shuffleSquares, 3000);
       }, []);
 
