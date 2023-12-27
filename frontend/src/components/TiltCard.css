@@ -1,0 +1,24 @@
+.tiltCard {
+    perspective: 1000px;
+    cursor: pointer;
+  }
+  
+  .cardContent {
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+  }
+  
+  .Card {
+    /* Add any additional styling for the Card component here */
+  }
+  
+  .CardActionArea {
+    /* Add styling for the CardActionArea if needed */
+  }
+  
+  .CardMedia {
+    /* Add styling for the CardMedia if needed */
+  }
+  

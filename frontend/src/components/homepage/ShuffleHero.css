@@ -1,0 +1,18 @@
+.shuffleGrid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(4, 1fr); /* Default to 4 columns */
+    height: 450px;
+  }
+  
+  @media (max-width: 768px) {
+    .shuffleGrid {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile */
+      height: auto; /* Adjust height for mobile */
+    }
+  
+    .shuffleGrid > div {
+      height: 200px; /* Adjust the height of grid items on mobile */
+    }
+  }
+  

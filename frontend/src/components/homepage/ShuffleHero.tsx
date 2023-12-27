@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
 import { useState, useRef, useEffect, useCallback } from 'react';
+import './ShuffleHero.css'
+
+
 
 const ShuffleHero = () => {
   return (
@@ -22,6 +25,25 @@ const ShuffleHero = () => {
       <ShuffleGrid />
     </section>
   );
+};
+
+
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  return isMobile;
 };
 
 const shuffle = (array: (typeof squareData)[0][]) => {
@@ -108,48 +130,68 @@ const squareData = [
   },
 ];
 
-const generateSquares = () => {
-  return shuffle(squareData).map((sq) => (
+
+interface SquareData {
+  id: number;
+  src: string;
+}
+
+const generateSquares = (data: SquareData[]) => {
+  return data.map((sq) => (
     <motion.div
       key={sq.id}
       layout
       transition={{ duration: 1.5, type: "spring" }}
-      className="w-full h-full"
+      className="gridItem" // Add a class for styling
       style={{
         backgroundImage: `url(${sq.src})`,
         backgroundSize: "cover",
+        backgroundPosition: "center" // Ensure image is centered
       }}
     ></motion.div>
   ));
 };
 
 const ShuffleGrid = () => {
-    const timeoutRef = useRef<number | undefined>(undefined);
-    const [squares, setSquares] = useState(generateSquares());
+  const isMobile = useIsMobile();
+  const timeoutRef = useRef<number | undefined>(undefined);
+  const [squares, setSquares] = useState<JSX.Element[]>([]);
+  const shuffleSquares = useCallback(() => {
+    const scrollY = window.scrollY; // Save current scroll position
 
-    const shuffleSquares = useCallback(() => {
-      const scrollY = window.scrollY; // Save current scroll position
+    // Shuffle and adjust the number of squares based on the device type
 
-        setSquares(generateSquares());
-      
-        requestAnimationFrame(() => {
-          window.scrollTo(0, scrollY);
-        });
+    let shuffledData;
 
-        timeoutRef.current = window.setTimeout(shuffleSquares, 3000);
-      }, []);
+    if (isMobile){
+       shuffledData = shuffle(squareData.slice(0, 4));
+    } else {
+       shuffledData = shuffle(squareData);
+    }
+    const displayedData = isMobile ? shuffledData.slice(0, 4) : shuffledData; // Only 4 images for mobile
+
+    setSquares(generateSquares(displayedData));
+
+    // Restore the scroll position after the shuffle
+    requestAnimationFrame(() => {
+      window.scrollTo(0, scrollY);
+    });
+
+    timeoutRef.current = window.setTimeout(shuffleSquares, 8000);
+  }, [isMobile]); // Depend on isMobile to re-create the shuffle function when device type changes
 
   useEffect(() => {
     shuffleSquares();
-  
+
     return () => clearTimeout(timeoutRef.current);
   }, [shuffleSquares]);
 
   return (
-    <div className="grid grid-cols-4 grid-rows-4 h-[450px] gap-1">
-      {squares.map((sq) => sq)}
+    <div className="shuffleGrid">
+      {squares}
     </div>
   );
 };
+
 
 export default ShuffleHero;
