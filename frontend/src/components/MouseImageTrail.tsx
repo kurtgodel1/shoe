@@ -27,7 +27,7 @@ export const ImageTrail = () => {
         "https://articonics.s3.eu-north-1.amazonaws.com/product_images/natureillustration.png",
       ]}
     >
-      <section className="grid h-screen w-full place-content-center bg-white" style={{ height: '75vh' }}>
+      <section className="grid h-screen w-full place-content-center bg-white" style={{ height: '100vh' }}>
         <p className="flex items-center gap-2 text-3xl font-bold uppercase text-black">
           <FiMousePointer />
           <span>Hover me</span>
@@ -127,6 +127,14 @@ const MouseImageTrail = ({
       className="relative overflow-hidden"
       onMouseMove={handleMouseMove}
       onTouchMove={handleTouchMove}
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        overflow: 'hidden'
+      }}
     >
       {children}
       {images.map((img, index) => (
