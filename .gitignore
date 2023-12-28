@@ -4,3 +4,6 @@ django_error.log
 backend/api/__pycache__/views.cpython-312.pyc
 backend/api/__pycache__/serializers.cpython-312.pyc
 *.log
+backend/api/__pycache__/serializers.cpython-312.pyc
+*.pyc
+*.log

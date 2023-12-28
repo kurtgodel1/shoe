@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Box, Container, Typography} from '@mui/material';
 import NavBar from './NavBar';
-import NavBarTop from './NavBarTop';
 import AnimateOnScroll from '../homepage/AnimateOnScroll';
 import Footer from '../homepage/Footer';
 import NewsletterSignUp from '../homepage/NewsletterSignUp';
@@ -15,7 +14,6 @@ const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
                     Free shipping on orders over $50!
                 </Typography>
             </Box>
-            <NavBarTop/>
             <NavBar/>
             <Box 
                 component="main" 

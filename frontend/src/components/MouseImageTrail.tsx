@@ -99,8 +99,8 @@ const MouseImageTrail = ({
     const imageWidth = el.offsetWidth / 2;
     const imageHeight = el.offsetHeight / 2;
 
-    el.style.top = `${lastRenderPosition.current.y - 5*imageHeight}px`;
-    el.style.left = `${lastRenderPosition.current.x - 7*imageWidth}px`;
+    el.style.top = `${lastRenderPosition.current.y - imageHeight}px`;
+    el.style.left = `${lastRenderPosition.current.x - imageWidth}px`;
     el.style.zIndex = imageRenderCount.current.toString();
 
     const rotation = Math.random() * rotationRange;

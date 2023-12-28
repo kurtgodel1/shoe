@@ -6,7 +6,6 @@ import CategoriesSection from '../components/homepage/CategoriesSection';
 import AnimateOnScroll from '../components/homepage/AnimateOnScroll';
 import './HomePage.css';
 import ShuffleHero from '../components/homepage/ShuffleHero';
-import {Example} from '../components/MouseImageTrail';
 
 const HomePage: React.FC = () => {
 
@@ -15,7 +14,6 @@ const HomePage: React.FC = () => {
             <ShuffleHero />
             <AnimateOnScroll className="section"><FeaturedProducts /></AnimateOnScroll>
             <AnimateOnScroll className="section"><CategoriesSection /></AnimateOnScroll>
-            <AnimateOnScroll className="section"><Example /></AnimateOnScroll>
             {/* You can add more sections here like categories, promotions, etc. */}
         </Box>
     );

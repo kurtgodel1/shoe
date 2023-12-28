@@ -10,6 +10,7 @@ import CheckoutPage from './pages/CheckoutPage';
 import ProductListingPage from './pages/ProductListingPage';
 import SignUpSide from './components/auth_components/SignUpSide';
 import SignInSide from './components/auth_components/SignInSide';
+import WelcomePage from './pages/WelcomePage';
 
 // import './App.css
 
@@ -18,6 +19,7 @@ function App() {
   return (
     <Router>
     <Routes>
+      <Route path="/" element={<WelcomePage />} />
       <Route path="/login" element={<SignInSide />} />
       <Route path="/register" element={<SignUpSide />} />
       <Route path="/*" element={
@@ -25,7 +27,7 @@ function App() {
           <Container style={{ width: '100%' }}>
             <Box my={4} style={{ width: '100%' }}>
               <Routes>
-                <Route path="/" element={<HomePage />} />
+                <Route path="/home" element={<HomePage />} />
                 <Route path="/products" element={<ProductListingPage />} />
                 <Route path="/product/:productId" element={<ProductDetailPage />} />
                 <Route path="/cart" element={<CartPage />} />

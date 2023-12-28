@@ -1,10 +1,16 @@
 import React from 'react';
 import { AppBar, Toolbar, Box } from '@mui/material';
 import { styled, alpha } from '@mui/material/styles';
-import DottedButton from '../DottedButton';
-import StaggeredDropDown from '../StaggeredDropDown';
+import CartDropdown from '../CartDropdown'; // Update the path as needed
+import UserDropdown from './UserDropdown';
+import EncryptButton from '../EncryptButton';
+import { useNavigate } from 'react-router-dom';
+import { FiHome, FiInstagram } from "react-icons/fi";
+
+
 
 const NavBar: React.FC = () => {
+    const navigate = useNavigate();
 
     const AppBarStyled = styled(AppBar)(({ theme }) => ({
         backgroundColor: 'white',
@@ -17,13 +23,24 @@ const NavBar: React.FC = () => {
         }),
     }));
 
+    const handleHomeClick = () => {
+        navigate('/home'); // Navigates to the register page
+    }; 
+
+    const handleProductsClick = () => {
+        navigate('/products'); // Navigates to the register page
+    }; 
+
     return (
         <AppBarStyled position="static" color="inherit" elevation={0} >
             <Toolbar>
                 <Box sx={{ flexGrow: .1 }} />
-                <DottedButton />
+                <EncryptButton targetText='Home' handleClick={handleHomeClick} logo={<FiHome />} />
                 <Box sx={{ flexGrow: .1 }} />
-                <StaggeredDropDown />
+                <EncryptButton targetText='Products' handleClick={handleProductsClick} logo={<FiInstagram />}/>
+                <Box sx={{ flexGrow: 1 }} />
+                <CartDropdown />
+                <UserDropdown />
             </Toolbar>
         </AppBarStyled>
     );

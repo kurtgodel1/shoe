@@ -48,36 +48,18 @@ const ProductDetailPage = () => {
 
   return (
     <div>
-        <Box className="swiperParentContainer" sx={{ padding: 2 }}>
+        <Box className="productDetailContainer" sx={{ padding: 2 }}>
         <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={2} sx={{ display: 'flex' }}>
             <Swiper
-              effect={'cube'}
-              loop={true}
-              grabCursor={true}
-              cubeEffect={{
-                "shadow": true,
-                "slideShadows": true,
-                "shadowOffset": 20,
-                "shadowScale": 0.94
-              }}
-              modules={[EffectCube, Pagination]}
-              className="mySwiper"
-              onSwiper={(swiper) => setCubeSwiper(swiper)}
-              >
-              {product.images.map((image, index) => (
-                <SwiperSlide key={index}>
-                  <img src={image.image} alt={product.name} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-            <Swiper
+            direction={'vertical'}
                 loop={true}
               slidesPerView={4}
-              spaceBetween={0}
+              spaceBetween={200}
               navigation
               modules={[Navigation]}
-              className="mySwiper navSwiper mt-6"
+              className="mySwiper navSwiper navSwiperVertical mt-2"
+              style={{ height: '70vh' }} // Adjust height as needed
             >
               {product.images.map((image, index) => (
                 <SwiperSlide key={index}>
@@ -92,6 +74,29 @@ const ProductDetailPage = () => {
             </Swiper>
           </Grid>
           <Grid item xs={12} md={6}>
+            <Swiper
+              style={{ height: '70vh' }} // Add this line
+              effect={'cube'}
+              loop={true}
+              grabCursor={true}
+              cubeEffect={{
+                "shadow": true,
+                "slideShadows": true,
+                "shadowOffset": 100,
+                "shadowScale": 0.94
+              }}
+              modules={[EffectCube, Pagination]}
+              className="mySwiper"
+              onSwiper={(swiper) => setCubeSwiper(swiper)}
+              >
+              {product.images.map((image, index) => (
+                <SwiperSlide key={index}>
+                  <img src={image.image} alt={product.name} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </Grid>
+          <Grid item xs={12} md={4}>
             <Typography variant="h4">{product.name}</Typography>
             <Typography variant="body1" sx={{ my: 2 }}>
               {product.description}

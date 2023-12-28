@@ -1,30 +1,34 @@
 import React, { useEffect, useRef, useState } from "react";
-import { FiLock } from "react-icons/fi";
 import { motion } from "framer-motion";
 
-const TARGET_TEXT = "Articonics";
 const CYCLES_PER_LETTER = 2;
 const SHUFFLE_TIME = 50;
 const ANIMATION_INTERVAL = 5000; // 5 seconds
 
 const CHARS = "!@#$%^&*():{};|,.<>/?";
 
-const EncryptButton: React.FC = () => {
-  const [text, setText] = useState<string>(TARGET_TEXT);
+interface EncryptButtonProps {
+  targetText: string;
+  handleClick: () => void;
+  logo: React.ReactElement; // Change this line
+}
+
+const EncryptButton: React.FC<EncryptButtonProps> = ({ targetText, handleClick, logo }) => {
+  const [text, setText] = useState<string>(targetText);
   const scrambleIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const scramble = () => {
     let pos = 0;
     scrambleIntervalRef.current = setInterval(() => {
-      if (pos >= TARGET_TEXT.length * CYCLES_PER_LETTER) {
+      if (pos >= targetText.length * CYCLES_PER_LETTER) {
         if (scrambleIntervalRef.current) {
           clearInterval(scrambleIntervalRef.current);
         }
-        setText(TARGET_TEXT);
+        setText(targetText);
         return;
       }
 
-      const scrambled = TARGET_TEXT.split("")
+      const scrambled = targetText.split("")
         .map((char, index) => {
           if (pos / CYCLES_PER_LETTER > index) {
             return char;
@@ -52,13 +56,14 @@ const EncryptButton: React.FC = () => {
 
   return (
     <motion.button
+      onClick={handleClick} // Add this line
       whileHover={{ scale: 1.025 }}
       whileTap={{ scale: 0.975 }}
       className="group relative overflow-hidden rounded-lg border-[1px] border-slate-500 bg-slate-700 px-4 py-2 font-mono font-medium uppercase text-slate-300 transition-colors hover:text-indigo-300"
     >
       <div className="relative z-10 flex items-center gap-2">
-        <FiLock />
-        <span>{text}</span>
+      {logo} 
+      <span>{text}</span>
       </div>
       <motion.span
         initial={{ y: "100%" }}
