@@ -31,8 +31,13 @@ function Copyright(props: TypographyProps) {
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-export default function SignUpSide() {
-    const [username, setUsername] = useState<string>('');
+interface SignUpSideProps {
+  toggleLoginDrawer: (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => void; // Add this line
+}
+
+
+export default function SignUpSide({ toggleLoginDrawer }: SignUpSideProps) {
+  const [username, setUsername] = useState<string>('');
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [error, setError] = useState<string>('');
@@ -77,9 +82,6 @@ export default function SignUpSide() {
         }
     };
 
-    const handleSignInClick = () => {
-      navigate('/login'); // Navigates to the register page
-  };
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -152,7 +154,7 @@ export default function SignUpSide() {
                 <Grid item xs>
                 </Grid>
                 <Grid item>
-                <Link href="#" variant="body2" onClick={handleSignInClick}>
+                <Link href="#" variant="body2" onClick={toggleLoginDrawer(true)}>
                     {"Have an account? Sign In"}
                   </Link>
                 </Grid>
