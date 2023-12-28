@@ -1,29 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, MouseEvent, KeyboardEvent } from 'react';
 import { Box, Button, Drawer } from '@mui/material';
 import { Example } from '../components/MouseImageTrail';
 import SignInSide from '../components/auth_components/SignInSide';
 import SignUpSide from '../components/auth_components/SignUpSide';
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-
-
-const MyPage = () => {
-    const location = useLocation();
-  const [isLoginDrawerOpen, setLoginDrawerOpen] = useState(false);
-  const [isSignUpDrawerOpen, setSignUpDrawerOpen] = useState(false);
+const MyPage: React.FC = () => {
+  const location = useLocation();
+  const [isLoginDrawerOpen, setLoginDrawerOpen] = useState<boolean>(false);
+  const [isSignUpDrawerOpen, setSignUpDrawerOpen] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const toggleLoginDrawer = (open) => (event) => {
-    if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+  const toggleLoginDrawer = (open: boolean) => (event: MouseEvent | KeyboardEvent) => {
+    if (event && event.type === 'keydown' && ((event as KeyboardEvent).key === 'Tab' || (event as KeyboardEvent).key === 'Shift')) {
       return;
     }
     setLoginDrawerOpen(open);
     if (open) setSignUpDrawerOpen(false);
   };
 
-  const toggleSignUpDrawer = (open) => (event) => {
-    if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+  const toggleSignUpDrawer = (open: boolean) => (event: MouseEvent | KeyboardEvent) => {
+    if (event && event.type === 'keydown' && ((event as KeyboardEvent).key === 'Tab' || (event as KeyboardEvent).key === 'Shift')) {
       return;
     }
     setSignUpDrawerOpen(open);
@@ -31,7 +28,6 @@ const MyPage = () => {
   };
 
   useEffect(() => {
-    // Check the current path and update state accordingly
     if (location.pathname === '/login') {
       setLoginDrawerOpen(true);
       setSignUpDrawerOpen(false);
@@ -62,16 +58,16 @@ const MyPage = () => {
       </Box>
 
       <Drawer anchor="left" open={isLoginDrawerOpen} onClose={(event) => {
-    toggleLoginDrawer(false)(event);
-    navigate('/');
-  }}>
+        toggleLoginDrawer(false)(event as MouseEvent | KeyboardEvent);
+        navigate('/');
+      }}>
         <SignInSide/>
       </Drawer>
 
       <Drawer anchor="right" open={isSignUpDrawerOpen} onClose={(event) => {
-    toggleSignUpDrawer(false)(event);
-    navigate('/');
-  }}>
+        toggleSignUpDrawer(false)(event as MouseEvent | KeyboardEvent);
+        navigate('/');
+      }}>
         <SignUpSide/>
       </Drawer>
     </div>
