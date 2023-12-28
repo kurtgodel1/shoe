@@ -31,9 +31,13 @@ const MyPage = () => {
   };
 
   useEffect(() => {
-    // Check if the location state has a parameter to open the login drawer
-    if (location.state?.openLoginDrawer) {
-      toggleLoginDrawer(true);
+    // Check the current path and update state accordingly
+    if (location.pathname === '/login') {
+      setLoginDrawerOpen(true);
+      setSignUpDrawerOpen(false);
+    } else if (location.pathname === '/register') {
+      setSignUpDrawerOpen(true);
+      setLoginDrawerOpen(false);
     }
   }, [location]);
 
@@ -52,17 +56,23 @@ const MyPage = () => {
         alignItems: 'center', 
         gap: 2 
       }}>
-        <Button variant="outlined" onClick={toggleLoginDrawer(true)}>Login</Button>
-        <Button variant="outlined" onClick={toggleSignUpDrawer(true)}>Sign Up</Button>
+        <Button variant="outlined" onClick={() => navigate('/login')}>Login</Button>
+        <Button variant="outlined" onClick={() => navigate('/register')}>Sign Up</Button>
         <Button variant="outlined" onClick={() => navigate('/home')}>HomePage</Button>
       </Box>
 
-      <Drawer anchor="left" open={isLoginDrawerOpen} onClose={toggleLoginDrawer(false)}>
-        <SignInSide toggleSignUpDrawer={toggleSignUpDrawer}/>
+      <Drawer anchor="left" open={isLoginDrawerOpen} onClose={(event) => {
+    toggleLoginDrawer(false)(event);
+    navigate('/');
+  }}>
+        <SignInSide/>
       </Drawer>
 
-      <Drawer anchor="right" open={isSignUpDrawerOpen} onClose={toggleSignUpDrawer(false)}>
-        <SignUpSide toggleLoginDrawer={toggleLoginDrawer}/>
+      <Drawer anchor="right" open={isSignUpDrawerOpen} onClose={(event) => {
+    toggleSignUpDrawer(false)(event);
+    navigate('/');
+  }}>
+        <SignUpSide/>
       </Drawer>
     </div>
   );

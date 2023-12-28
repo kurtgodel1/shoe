@@ -8,8 +8,6 @@ import ProductDetailPage from './pages/ProductDetailPage';
 import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
 import ProductListingPage from './pages/ProductListingPage';
-import SignUpSide from './components/auth_components/SignUpSide';
-import SignInSide from './components/auth_components/SignInSide';
 import WelcomePage from './pages/WelcomePage';
 
 // import './App.css
@@ -20,8 +18,8 @@ function App() {
     <Router>
     <Routes>
       <Route path="/" element={<WelcomePage />} />
-      <Route path="/login" element={<SignInSide />} />
-      <Route path="/register" element={<SignUpSide />} />
+      <Route path="/login" element={<WelcomePage />} />
+      <Route path="/register" element={<WelcomePage />} />
       <Route path="/*" element={
         <MainLayout>
           <Container style={{ width: '100%' }}>

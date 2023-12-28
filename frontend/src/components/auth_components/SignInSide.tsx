@@ -36,11 +36,9 @@ function Copyright(props: TypographyProps) {
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
-interface SignInSideProps {
-  toggleSignUpDrawer: (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => void; // Add this line
-}
 
-export default function SignInSide({  toggleSignUpDrawer }: SignInSideProps) {
+
+export default function SignInSide() {
   const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [error, setError] = useState<string>('');
@@ -73,7 +71,7 @@ export default function SignInSide({  toggleSignUpDrawer }: SignInSideProps) {
             });
             
             dispatch(login({ user: response.data.user, token: response.data.token }));
-            navigate('/');
+            navigate('/home');
         } catch (err) {
             console.error('Login error:', err);
             setError('Failed to log in. Please check your username and password.');
@@ -82,9 +80,6 @@ export default function SignInSide({  toggleSignUpDrawer }: SignInSideProps) {
         }
     };
 
-    const handleSignUpClick = () => {
-        navigate('/register'); // Navigates to the register page
-    };
 
   return (
     <ThemeProvider theme={defaultTheme}>
@@ -152,7 +147,7 @@ export default function SignInSide({  toggleSignUpDrawer }: SignInSideProps) {
                   </Link>
                 </Grid>
                 <Grid item>
-                <Link href="#" variant="body2" onClick={toggleSignUpDrawer(true)}>
+                <Link href="#" variant="body2" onClick={() => navigate('/register')}>
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
