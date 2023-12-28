@@ -49,7 +49,7 @@ const MyPage: React.FC = () => {
         bottom: 50, // Aligns the box to the top of the page
         left: '50%', 
         transform: 'translateX(-50%)', // Centers the box horizontally
-        zIndex: 2,
+        zIndex: 1000,
         display: 'flex', 
         flexDirection: 'row', // Aligns buttons side by side
         alignItems: 'center', 
@@ -57,9 +57,9 @@ const MyPage: React.FC = () => {
         gap: 2, // Space between buttons
         paddingTop: '20px' // Adds some space from the top
       }}>
-        <Button variant="outlined" onClick={() => navigate('/home')}>HomePage</Button>
-        <Button variant="outlined" onClick={() => navigate('/login')}>Login</Button>
-        <Button variant="outlined" onClick={() => navigate('/register')}>Sign Up</Button>
+        <Button variant="contained" onClick={() => navigate('/home')}>HomePage</Button>
+        <Button variant="contained" onClick={() => navigate('/login')}>Login</Button>
+        <Button variant="contained" onClick={() => navigate('/register')}>Sign Up</Button>
       </Box>
 
       <Drawer anchor="left" open={isLoginDrawerOpen} onClose={(event) => {
