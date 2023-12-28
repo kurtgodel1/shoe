@@ -17,6 +17,8 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/slices/authSlice';
 import { Typography, TypographyProps } from '@mui/material';
+import { IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 
@@ -86,6 +88,12 @@ export default function SignInSide() {
       <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
         <Grid item xs={12} sm={8} md={12} component={Paper} elevation={6} square>
+        <IconButton
+        style={{ position: 'absolute', top: 0, right: 0 }}
+        onClick={() => navigate('/')}
+      >
+        <CloseIcon />
+      </IconButton>
           <Box
             sx={{
               my: 8,

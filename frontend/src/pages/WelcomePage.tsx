@@ -1,6 +1,6 @@
 import React, { useState, useEffect, MouseEvent, KeyboardEvent } from 'react';
 import { Box, Button, Drawer } from '@mui/material';
-import { Example } from '../components/MouseImageTrail';
+import { ImageTrail } from '../components/MouseImageTrail';
 import SignInSide from '../components/auth_components/SignInSide';
 import SignUpSide from '../components/auth_components/SignUpSide';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -34,12 +34,15 @@ const MyPage: React.FC = () => {
     } else if (location.pathname === '/register') {
       setSignUpDrawerOpen(true);
       setLoginDrawerOpen(false);
-    }
+    } else if (location.pathname === '/') {
+        setSignUpDrawerOpen(false);
+        setLoginDrawerOpen(false);
+      }
   }, [location]);
 
   return (
     <div style={{ position: 'relative', height: '100vh' }}>
-      <Example />
+      <ImageTrail />
 
       <Box sx={{ 
         position: 'absolute', 

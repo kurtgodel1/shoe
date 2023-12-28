@@ -12,7 +12,8 @@ import config from '../../config';
 import { useNavigate } from 'react-router-dom';
 import { Typography, TypographyProps } from '@mui/material';
 import { TextField, Button} from '@mui/material';
-
+import { IconButton } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 
 function Copyright(props: TypographyProps) {
@@ -84,6 +85,12 @@ export default function SignUpSide() {
       <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
         <Grid item xs={12} sm={8} md={12} component={Paper} elevation={6} square>
+          <IconButton
+            style={{ position: 'absolute', top: 0, right: 0 }}
+            onClick={() => navigate('/')}
+          >
+            <CloseIcon />
+          </IconButton>
           <Box
             sx={{
               my: 8,

@@ -3,7 +3,7 @@ import { MouseEventHandler, ReactNode, useRef, TouchEventHandler } from "react";
 import { FiMousePointer } from "react-icons/fi";
 
 
-export const Example = () => {
+export const ImageTrail = () => {
   return (
     <MouseImageTrail
       renderImageBuffer={50}
