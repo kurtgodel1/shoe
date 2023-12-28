@@ -177,7 +177,7 @@ const ShuffleGrid = () => {
       window.scrollTo(0, scrollY);
     });
 
-    timeoutRef.current = window.setTimeout(shuffleSquares, 8000);
+    timeoutRef.current = window.setTimeout(shuffleSquares, 3000);
   }, [isMobile]); // Depend on isMobile to re-create the shuffle function when device type changes
 
   useEffect(() => {

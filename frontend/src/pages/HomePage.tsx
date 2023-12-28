@@ -11,7 +11,7 @@ const HomePage: React.FC = () => {
 
     return (
         <Box sx={{ flexGrow: 1, width: '100%'  }}>
-            <ShuffleHero />
+            <AnimateOnScroll className="section"><ShuffleHero /></AnimateOnScroll>
             <AnimateOnScroll className="section"><FeaturedProducts /></AnimateOnScroll>
             <AnimateOnScroll className="section"><CategoriesSection /></AnimateOnScroll>
             {/* You can add more sections here like categories, promotions, etc. */}
