@@ -47,7 +47,7 @@ const ProductDetailPage = () => {
   };
 
   return (
-    <div>
+    <div className="mb-60">
         <Box className="productDetailContainer" sx={{ padding: 2 }}>
         <Grid container spacing={2}>
         <Grid item xs={12} md={2} sx={{ display: 'flex' }}>

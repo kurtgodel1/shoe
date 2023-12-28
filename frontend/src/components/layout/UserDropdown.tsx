@@ -23,6 +23,10 @@ const UserDropDown = () => {
     navigate('/login');
   };
 
+  const handleSignUp = () => {
+    navigate('/register');
+  };
+
   const handleLogout = async () => {
     try {
       await axios.post(`${config.API_URL}/auth_app/logout/`); // Adjust the URL as needed
@@ -35,8 +39,12 @@ const UserDropDown = () => {
 
   return (
     <div>
-      <motion.div animate={open ? "open" : "closed"} className="relative">
-        <button
+      <motion.div 
+        animate={open ? "open" : "closed"} 
+        onMouseEnter={() => setOpen(true)}
+        onMouseLeave={() => setOpen(false)} 
+        className="relative">
+       <button
           onClick={() => setOpen((pv) => !pv)}
           className="flex items-center gap-2 px-3 py-2 rounded-md text-indigo-50 bg-indigo-500 hover:bg-indigo-500 transition-colors"
         >
@@ -50,14 +58,14 @@ const UserDropDown = () => {
           initial={wrapperVariants.closed}
           variants={wrapperVariants}
           style={{ originY: "top", translateX: "-50%", zIndex: 1 }}
-          className="flex flex-col gap-2 p-2 rounded-lg bg-white shadow-xl absolute top-[120%] left-[50%] w-48 overflow-hidden"
+          className="flex flex-col gap-2 p-2 rounded-lg bg-white shadow-xl absolute left-[50%] w-48 overflow-hidden"
         >
           {isLoggedIn ? (
           <Option setOpen={setOpen} Icon={FiLogOut} text="Logout" onClick={handleLogout} />
         ) : (
           <>
             <Option setOpen={setOpen} Icon={FiLogIn} text="Login" onClick={handleLogin} />
-            <Option setOpen={setOpen} Icon={FiLogIn} text="Sign Up" onClick={() => navigate('/signup')} />
+            <Option setOpen={setOpen} Icon={FiLogIn} text="Sign Up" onClick={handleSignUp} />
           </>
         )}        
         </motion.ul>

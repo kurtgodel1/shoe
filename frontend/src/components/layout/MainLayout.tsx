@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { Box, Container, Typography} from '@mui/material';
+import { Box, Container} from '@mui/material';
 import NavBar from './NavBar';
 import AnimateOnScroll from '../homepage/AnimateOnScroll';
 import Footer from '../homepage/Footer';
@@ -9,11 +9,6 @@ const MainLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
 
     return (
         <Box >
-            <Box sx={{ backgroundColor: 'primary.main', color: 'white', py: 1, px: 2 }}>
-                <Typography variant="body2" align="center">
-                    Free shipping on orders over $50!
-                </Typography>
-            </Box>
             <NavBar/>
             <Box 
                 component="main" 

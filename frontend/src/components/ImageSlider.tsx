@@ -34,13 +34,15 @@ const ImageSlider: React.FC<ImageSliderProps> = ({ products }) => {
     };
 
     return (
-        <Slider {...settings}>
-            {products.map(product => (
-                <div key={product.id}>
-                    <ProductCard product={product} />
-                </div>
-            ))}
-        </Slider>
+        <div className="mb-5">
+            <Slider {...settings}>
+                {products.map(product => (
+                    <div key={product.id}>
+                        <ProductCard product={product} />
+                    </div>
+                ))}
+            </Slider>
+        </div>
     );
 };
 

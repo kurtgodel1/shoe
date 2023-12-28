@@ -6,6 +6,10 @@ import UserDropdown from './UserDropdown';
 import EncryptButton from '../EncryptButton';
 import { useNavigate } from 'react-router-dom';
 import { FiHome, FiInstagram } from "react-icons/fi";
+import StaggeredDropDown from '../StaggeredDropDown';
+import { FiEdit} from "react-icons/fi";
+import { FaInstagram } from "react-icons/fa6";
+
 
 function HideOnScroll(props: { children: ReactElement }) {
     const { children } = props;
@@ -21,6 +25,8 @@ function HideOnScroll(props: { children: ReactElement }) {
 
 const NavBar: React.FC = () => {
     const navigate = useNavigate();
+    const handleHomeClick = () => navigate('/home');
+    const handleProductsClick = () => navigate('/products');
 
     const AppBarStyled = styled(AppBar)(({ theme }) => ({
         backgroundColor: 'white',
@@ -33,27 +39,40 @@ const NavBar: React.FC = () => {
         }),
     }));
 
-    const handleHomeClick = () => {
-        navigate('/home'); // Navigates to the register page
-    }; 
-
-    const handleProductsClick = () => {
-        navigate('/products'); // Navigates to the register page
-    }; 
 
     return (
-        <HideOnScroll>
-            <AppBarStyled color="inherit" elevation={0} >
-                <Toolbar>
-                    <Box sx={{ flexGrow: .1 }} />
-                    <EncryptButton targetText='Home' handleClick={handleHomeClick} logo={<FiHome />} />
-                    <EncryptButton targetText='Products' handleClick={handleProductsClick} logo={<FiInstagram />}/>
-                    <Box sx={{ flexGrow: 1 }} />
-                    <CartDropdown />
-                    <UserDropdown />
-                </Toolbar>
-            </AppBarStyled>
-        </HideOnScroll>
+        <>
+            <HideOnScroll>
+                <AppBarStyled>
+                    <Toolbar>
+                        <Box sx={{ flexGrow: .1 }} />
+                        {/* Mobile Menu Icon */}
+                        <Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
+                        <StaggeredDropDown
+                            title="Post"
+                            options={[
+                                { text: 'Home', Icon: FiEdit, onClick: handleHomeClick },
+                                { text: 'Products', Icon: FaInstagram, onClick: handleProductsClick },
+                                // ... other options ...
+                            ]}
+                            />                        
+                        </Box>
+                        {/* Desktop Items */}
+                        <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                            <EncryptButton targetText='Home' handleClick={handleHomeClick} logo={<FiHome />} />
+                            <EncryptButton targetText='Products' handleClick={handleProductsClick} logo={<FiInstagram />} />
+                        </Box>
+                        <Box sx={{ flexGrow: 1 }} />
+
+                        {/* Right items - Visible on all screen sizes */}
+                        <Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
+                            <CartDropdown />
+                            <UserDropdown />
+                        </Box>                        
+                    </Toolbar>
+                </AppBarStyled>
+            </HideOnScroll>
+        </>
     );
 };
 
