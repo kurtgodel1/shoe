@@ -1,5 +1,5 @@
 import { useAnimate } from "framer-motion";
-import { MouseEventHandler, ReactNode, useRef } from "react";
+import { MouseEventHandler, ReactNode, useRef, TouchEventHandler } from "react";
 import { FiMousePointer } from "react-icons/fi";
 
 
