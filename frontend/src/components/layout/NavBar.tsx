@@ -1,5 +1,5 @@
-import React from 'react';
-import { AppBar, Toolbar, Box } from '@mui/material';
+import React, { ReactElement } from 'react';
+import { AppBar, Toolbar, Box, Slide, useScrollTrigger } from '@mui/material';
 import { styled, alpha } from '@mui/material/styles';
 import CartDropdown from '../CartDropdown'; // Update the path as needed
 import UserDropdown from './UserDropdown';
@@ -7,7 +7,17 @@ import EncryptButton from '../EncryptButton';
 import { useNavigate } from 'react-router-dom';
 import { FiHome, FiInstagram } from "react-icons/fi";
 
+function HideOnScroll(props: { children: ReactElement }) {
+    const { children } = props;
+    // Trigger for detecting scroll
+    const trigger = useScrollTrigger();
 
+    return (
+        <Slide appear={false} direction="down" in={!trigger}>
+            {children}
+        </Slide>
+    );
+}
 
 const NavBar: React.FC = () => {
     const navigate = useNavigate();
@@ -32,17 +42,18 @@ const NavBar: React.FC = () => {
     }; 
 
     return (
-        <AppBarStyled position="static" color="inherit" elevation={0} >
-            <Toolbar>
-                <Box sx={{ flexGrow: .1 }} />
-                <EncryptButton targetText='Home' handleClick={handleHomeClick} logo={<FiHome />} />
-                <Box sx={{ flexGrow: .1 }} />
-                <EncryptButton targetText='Products' handleClick={handleProductsClick} logo={<FiInstagram />}/>
-                <Box sx={{ flexGrow: 1 }} />
-                <CartDropdown />
-                <UserDropdown />
-            </Toolbar>
-        </AppBarStyled>
+        <HideOnScroll>
+            <AppBarStyled color="inherit" elevation={0} >
+                <Toolbar>
+                    <Box sx={{ flexGrow: .1 }} />
+                    <EncryptButton targetText='Home' handleClick={handleHomeClick} logo={<FiHome />} />
+                    <EncryptButton targetText='Products' handleClick={handleProductsClick} logo={<FiInstagram />}/>
+                    <Box sx={{ flexGrow: 1 }} />
+                    <CartDropdown />
+                    <UserDropdown />
+                </Toolbar>
+            </AppBarStyled>
+        </HideOnScroll>
     );
 };
 
