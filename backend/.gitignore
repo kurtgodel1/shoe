@@ -128,3 +128,11 @@ dmypy.json
 # Pyre type checker #
 #####################
 .pyre/
+
+db.sqlite3
+django_error.log
+api/__pycache__/views.cpython-312.pyc
+api/__pycache__/serializers.cpython-312.pyc
+*.log
+api/__pycache__/serializers.cpython-312.pyc
+*.pyc
