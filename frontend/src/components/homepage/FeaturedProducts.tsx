@@ -6,11 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Button, Typography, Box } from '@mui/material';
+import { Button, Box } from '@mui/material';
 import './FeaturedProducts.css'
 import ImageSlider from '../ImageSlider';
 import ImageSliderSkeleton from '../ImageSliderSkeleton';
-import InstagramIcon from '@mui/icons-material/Instagram';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 
 
@@ -45,10 +44,7 @@ const FeaturedProducts : React.FC = () => {
         alignItems: 'center',
         mb: 4
       }}>
-        <Typography variant="h4" sx={{ display: 'flex', alignItems: 'center' }}>
-          <InstagramIcon sx={{ mr: 1 }} />
-          Featured Products
-        </Typography>
+        <Box sx={{ flexGrow: 1 }} />
         <Button 
           endIcon={<KeyboardDoubleArrowRightIcon />} 
           onClick={handleSeeMoreClick}

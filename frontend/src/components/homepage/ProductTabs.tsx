@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Tabs, Tab, Typography } from '@mui/material';
-import { Product } from '../types/types';
+import FeaturedProducts from './FeaturedProducts';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -8,9 +8,6 @@ interface TabPanelProps {
   value: number;
 }
 
-interface ProductTabsProps {
-    product: Product;
-  }
 
 function TabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
@@ -27,7 +24,7 @@ function TabPanel(props: TabPanelProps) {
   );
 }
 
-const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
+const ProductTabs: React.FC = () => {
     const [value, setValue] = useState(0);
 
     const handleChange = (_: React.ChangeEvent<unknown>, newValue: number) => {
@@ -36,19 +33,19 @@ const ProductTabs: React.FC<ProductTabsProps> = ({ product }) => {
 
   return (
     <Box sx={{ width: '100%' }} className="mt-20 mb-20">
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="product details tabs">
-          <Tab label="Description" />
-          <Tab label="Additional Information" />
+      <Box >
+        <Tabs value={value} onChange={handleChange} aria-label="product details tabs" centered>
+          <Tab label="Featured" />
+          <Tab label="Latest" />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
         {/* Content for Description Tab */}
-        <Typography>{product.description}</Typography>
+        <FeaturedProducts />
       </TabPanel>
       <TabPanel value={value} index={1}>
         {/* Content for Additional Information Tab */}
-        <Typography>Additional Information...</Typography>
+        <FeaturedProducts />
       </TabPanel>
     </Box>
   );

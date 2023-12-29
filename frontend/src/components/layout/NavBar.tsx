@@ -27,6 +27,7 @@ const NavBar: React.FC = () => {
     const navigate = useNavigate();
     const handleHomeClick = () => navigate('/home');
     const handleProductsClick = () => navigate('/products');
+    const handleDalleClick = () => navigate('/dalle');
 
     const AppBarStyled = styled(AppBar)(({ theme }) => ({
         backgroundColor: 'white',
@@ -47,7 +48,7 @@ const NavBar: React.FC = () => {
                     <Toolbar>
                         <Box sx={{ flexGrow: .1 }} />
                         {/* Mobile Menu Icon */}
-                        <Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
+                        <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                         <StaggeredDropDown
                             title="Post"
                             options={[
@@ -58,14 +59,15 @@ const NavBar: React.FC = () => {
                             />                        
                         </Box>
                         {/* Desktop Items */}
-                        <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                        <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
                             <EncryptButton targetText='Home' handleClick={handleHomeClick} logo={<FiHome />} />
                             <EncryptButton targetText='Products' handleClick={handleProductsClick} logo={<FiInstagram />} />
+                            <EncryptButton targetText='DALL-E 3' handleClick={handleDalleClick} logo={<FiInstagram />} />
                         </Box>
                         <Box sx={{ flexGrow: 1 }} />
 
                         {/* Right items - Visible on all screen sizes */}
-                        <Box sx={{ display: { xs: 'flex', md: 'flex' } }}>
+                        <Box sx={{ display: { xs: 'flex', md: 'flex' }, gap: 2 }}>
                             <CartDropdown />
                             <UserDropdown />
                         </Box>                        

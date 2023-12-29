@@ -59,7 +59,7 @@ const EncryptButton: React.FC<EncryptButtonProps> = ({ targetText, handleClick, 
       onClick={handleClick} // Add this line
       whileHover={{ scale: 1.025 }}
       whileTap={{ scale: 0.975 }}
-      className="group relative overflow-hidden rounded-lg border-[1px] border-slate-500 bg-slate-700 px-4 py-2 font-mono font-medium uppercase text-slate-300 transition-colors hover:text-indigo-300"
+      className="group relative overflow-hidden rounded-lg border-[1px] border-slate-500 px-4 py-2 font-mono font-medium text-slate-300 transition-colors bg-indigo-500 hover:bg-indigo-500"
     >
       <div className="relative z-10 flex items-center gap-2">
       {logo} 

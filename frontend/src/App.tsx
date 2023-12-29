@@ -9,7 +9,8 @@ import CartPage from './pages/CartPage';
 import CheckoutPage from './pages/CheckoutPage';
 import ProductListingPage from './pages/ProductListingPage';
 import WelcomePage from './pages/WelcomePage';
-
+import DallePage from './pages/DallePage';
+import ProductDetail2 from './pages/ProductDetail2';
 // import './App.css
 
 function App() {
@@ -26,7 +27,9 @@ function App() {
             <Box my={4} style={{ width: '100%' }}>
               <Routes>
                 <Route path="/home" element={<HomePage />} />
+                <Route path="/dalle" element={<DallePage />} />
                 <Route path="/products" element={<ProductListingPage />} />
+                <Route path="/products2" element={<ProductDetail2 />} />
                 <Route path="/product/:productId" element={<ProductDetailPage />} />
                 <Route path="/cart" element={<CartPage />} />
                 <Route path="/checkout" element={<CheckoutPage />} />

@@ -1,31 +1,4 @@
-.productDetailContainer {
-    max-width: 100%;
-    margin: auto;
-    padding: 20px;
-    display: flex;
-  }
-  
-  .productSwiper {
-    width: 100%;
-    max-height: 500px; /* Adjust this value as needed */
-  }
-  
-  .productImage {
-    width: 100%;
-    height: auto;
-    object-fit: cover; /* This ensures the image covers the area without stretching */
-  }
-  
-  /* Responsive adjustments for smaller screens */
-  @media (max-width: 768px) {
-    .productSwiper {
-      max-height: 300px; /* Smaller height for smaller screens */
-    }
-  
-    .productDetailContainer {
-      padding: 10px;
-    }
-  }
+
 
   .navSwiperVertical {
     position: relative;
@@ -39,19 +12,42 @@
     left: 0;
     right: 0;
     margin: 0;
-    background: none; /* Optional: remove background */
+    background: red; /* Optional: remove background */
+    opacity: 0.5; /* Optional: remove background */
     transform: rotate(90deg);
 
   }
   
   .navSwiperVertical .swiper-button-next {
-    bottom: 10px; /* Adjust as needed */
+    bottom: 1vh; /* Adjust as needed */
   }
   
   .navSwiperVertical .swiper-button-prev {
-    top: 10px; /* Adjust as needed */
+    top: 1vh; /* Adjust as needed */
   }
   
 
   
-  
+  @tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* styles.css */
+:root {
+  --gold: #fde047;
+}
+
+/* Additional CSS rules for styling your React components */
+
+@layer base {
+  button {
+    @apply border border-black rounded-xl px-5 py-1;
+  }
+}
+
+.react-rater-star.is-active-half:before {
+  color: var(--gold) !important;
+}
+
+.react-rater-star.is-active {
+  color: var(--gold) !important;
+}

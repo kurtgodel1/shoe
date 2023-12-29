@@ -1,25 +1,32 @@
 import { motion } from "framer-motion";
 import { useState, useRef, useEffect, useCallback } from 'react';
 import './ShuffleHero.css'
-
+import { useNavigate } from 'react-router-dom';
 
 
 const ShuffleHero = () => {
+  const navigate = useNavigate();
+
+  const handleExploreClick = () => {
+    navigate('/products'); // Adjust the route as needed
+  };
+
   return (
     <section className="w-full px-8 py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8 max-w-6xl mx-auto">
       <div>
         <span className="block mb-4 text-xs md:text-sm text-indigo-500 font-medium">
-          Better every day
+          Unveiling AI Artistry
         </span>
         <h3 className="text-4xl md:text-6xl font-semibold">
-          Let's change it up a bit
+          A Fusion of Technology and Creativity
         </h3>
         <p className="text-base md:text-lg text-slate-700 my-4 md:my-6">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam nobis in
-          error repellat voluptatibus ad.
+        Discover a world where art meets artificial intelligence. Each piece in our collection 
+          is a unique expression, birthed from advanced algorithms and the touch of digital mastery.
+          Dive into the vivid imaginations of AI and find artwork that resonates with your space and spirit.
         </p>
-        <button className="bg-indigo-500 text-white font-medium py-2 px-4 rounded transition-all hover:bg-indigo-600 active:scale-95">
-          Find a class
+        <button onClick={handleExploreClick} className="bg-indigo-500 text-white font-medium py-2 px-4 rounded transition-all hover:bg-indigo-600 active:scale-95">
+          Explore the Gallery
         </button>
       </div>
       <ShuffleGrid />

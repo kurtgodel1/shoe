@@ -1,20 +1,33 @@
 import  { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Box, Typography, Button, Grid} from '@mui/material';
+import { Box, Button, Grid, Typography, IconButton} from '@mui/material';
+import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import { Product } from '../types/types';
 import config from '../config';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../store/slices/cartSlice';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, EffectCube } from 'swiper/modules';
+import { Navigation, Pagination, EffectCube, Keyboard } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-cube';
 import { Swiper as SwiperClass } from 'swiper';
-import './ProductDetailPage.css'
-import ProductTabs from './ProductTabs';
+import Rater from "react-rater";
+import "react-rater/lib/react-rater.css";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'; // For Availability
+import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'; // For Brand
+import CategoryIcon from '@mui/icons-material/Category'; // For Category
+import Lightbox from 'yet-another-react-lightbox';
+import 'yet-another-react-lightbox/styles.css';
+import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+
 
 
 const ProductDetailPage = () => {
@@ -22,6 +35,7 @@ const ProductDetailPage = () => {
   const [product, setProduct] = useState<Product | null>(null);
   const dispatch = useDispatch();
   const [cubeSwiper, setCubeSwiper] = useState<SwiperClass | null>(null); // Correctly typed
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   useEffect(() => {
     axios.get<Product>(`${config.API_URL}/api/products/${productId}`)
@@ -46,72 +60,154 @@ const ProductDetailPage = () => {
     }
   };
 
+  const slides = product.images.map(img => ({ src: img.image, downloadUrl: img.image }));
+  console.log(slides);
+
+  const plusMinuceButton =
+    "flex h-8 w-8 cursor-pointer items-center justify-center border duration-100 hover:bg-neutral-100 focus:ring-2 focus:ring-gray-500 active:ring-2 active:ring-gray-500";
+  
   return (
-    <div className="mb-60">
-        <Box className="productDetailContainer" sx={{ padding: 2 }}>
-        <Grid container spacing={2}>
-        <Grid item xs={12} md={2} sx={{ display: 'flex' }}>
-            <Swiper
-            direction={'vertical'}
+    <Box sx={{ flexGrow: 1, width: '100%'  }} className="mb-60">
+    <Box className="productDetailContainer" sx={{ padding: 2 }}>
+        <Grid container spacing={10}>
+            <Grid item xs={12} md={6}>
+            <Box position="relative">
+              <Swiper
+                effect={'cube'}
                 loop={true}
-              slidesPerView={4}
-              spaceBetween={200}
-              navigation
-              modules={[Navigation]}
-              className="mySwiper navSwiper navSwiperVertical mt-2"
-              style={{ height: '70vh' }} // Adjust height as needed
-            >
-              {product.images.map((image, index) => (
-                <SwiperSlide key={index}>
-                  <img
-                    src={image.image}
-                    alt={product.name}
-                    style={{ width: '100%', cursor: 'pointer' }}
-                    onClick={() => updateCubeSwiper(index)}
+                grabCursor={true}
+                cubeEffect={{
+                  "shadow": true,
+                  "slideShadows": false,
+                  "shadowOffset": window.innerWidth <= 768 ? 0:100,
+                  "shadowScale": 0.94
+                }}
+                keyboard={{
+                  enabled: true,
+                }}
+                modules={[EffectCube, Pagination, Navigation, Keyboard]}
+                pagination={{ clickable: true }} // Add this line
+                className="mySwiper"
+                onSwiper={(swiper) => setCubeSwiper(swiper)}
+                >
+                {product.images.map((image, index) => (
+                  <SwiperSlide key={index}>
+                    <img src={image.image} alt={product.name} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+              <IconButton 
+                  onClick={() => setLightboxOpen(true)}
+                  color="primary" 
+                  style={{ position: 'absolute', top: 10, right: 10, zIndex: 10 }}
+                >
+                  <ZoomInIcon />
+              </IconButton>
+              {lightboxOpen && (
+                  <Lightbox
+                    open={lightboxOpen}
+                    close={() => setLightboxOpen(false)}
+                    slides={slides.map((slide) => ({
+                      ...slide,
+                      download: `${slide.src}?download`,
+                    }))}
+                    plugins={[Fullscreen, Zoom, Thumbnails]}
+                    // ... other lightbox props ...
                   />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <Swiper
-              style={{ height: '70vh' }} // Add this line
-              effect={'cube'}
-              loop={true}
-              grabCursor={true}
-              cubeEffect={{
-                "shadow": true,
-                "slideShadows": true,
-                "shadowOffset": 100,
-                "shadowScale": 0.94
-              }}
-              modules={[EffectCube, Pagination]}
-              className="mySwiper"
-              onSwiper={(swiper) => setCubeSwiper(swiper)}
-              >
-              {product.images.map((image, index) => (
-                <SwiperSlide key={index}>
-                  <img src={image.image} alt={product.name} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </Grid>
+                )}
+            </Box>
+            </Grid>
           <Grid item xs={12} md={4}>
-            <Typography variant="h4">{product.name}</Typography>
-            <Typography variant="body1" sx={{ my: 2 }}>
-              {product.description}
+          <Typography variant="h5" component="h2" className="pt-3 lg:pt-0">
+              {product.name}
             </Typography>
-            <Typography variant="h6" sx={{ mb: 2 }}>
-              Price: ${product.price}
-            </Typography>
-            <Button variant="contained" size="small" onClick={handleAddToCart}>
-              Add to Cart
-            </Button>
-            <ProductTabs product={product}/>
+            <Box className="mt-1 mb-10">
+              <div className="flex items-center">
+                <Rater total={5} interactive={false} rating={3.5} />
+                <Typography variant="body2" color="text.secondary" className="ml-3">
+                  (150 reviews)
+                </Typography>
+              </div>
+            </Box>
+            <Box display="flex" alignItems="center" className="mt-5">
+                <CheckCircleOutlineIcon color="success" />
+                <Typography variant="body1" className="ml-2">
+                  Availability: <span className="text-green-600">In Stock</span>
+                </Typography>
+              </Box>
+
+              <Box display="flex" alignItems="center" className="mt-5">
+                <BrandingWatermarkIcon color="action" />
+                <Typography variant="body1" className="ml-2">
+                  Brand: <span>{product.brand}</span>
+                </Typography>
+              </Box>
+
+              <Box display="flex" alignItems="center" className="mt-5">
+                <CategoryIcon color="primary" />
+                <Typography variant="body1" className="ml-2">
+                  Category: <span>{product.category.name}</span>
+                </Typography>
+              </Box>
+
+              <Box display="flex" alignItems="center" className="mt-5">
+                <Typography variant="h4" color="primary" className="mt-4">
+                  ${product.price}
+                </Typography>
+              </Box>
+
+              <Box display="flex" alignItems="center" className="mt-5">
+                <Typography variant="body2" color="text.secondary" className="mt-4">
+                  {product.description}
+                </Typography>
+              </Box>
+              
+            <Box className="mt-10">
+              <Typography variant="body2" color="text.secondary">Quantity</Typography>
+              <div className="flex mt-2">
+                <button className={`${plusMinuceButton}`}>−</button>
+                <div className="flex h-8 w-8 cursor-text items-center justify-center border-t border-b active:ring-gray-500">
+                  1
+                </div>
+                <button className={`${plusMinuceButton}`}> +</button>
+              </div>
+            </Box>
+            <Box className="mt-7 flex flex-row items-center gap-6">
+              <Button startIcon={<ShoppingCartIcon />} variant="contained" onClick={handleAddToCart}>
+                Add to Cart
+              </Button>
+              <Button startIcon={<FavoriteBorderIcon />} variant="contained">
+                Wishlist
+              </Button>
+            </Box>
           </Grid>
+          <Grid item xs={12} md={6} sx={{ display: { xs: 'none', md: 'flex' } }}>
+              <Swiper
+              keyboard={{
+                enabled: true,
+              }}
+                loop={true}
+                slidesPerView={4}
+                spaceBetween={10}
+                navigation
+                modules={[Navigation, Keyboard]}
+                className="mySwiper navSwiper navSwiperVertical mt-2"
+              >
+                {product.images.map((image, index) => (
+                  <SwiperSlide key={index}>
+                    <img
+                      src={image.image}
+                      alt={product.name}
+                      className="w-full cursor-pointer" 
+                      onClick={() => updateCubeSwiper(index)}
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </Grid>
         </Grid>
       </Box>
-    </div>
+    </Box>
   );
 };
 

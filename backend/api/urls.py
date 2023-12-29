@@ -1,6 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import UserViewSet, ProductViewSet, OrderViewSet, OrderItemViewSet, CartViewSet, CartItemViewSet, ReviewViewSet, CategoryViewSet
+from .views import GenerateImageView
 
 
 router = DefaultRouter()
@@ -16,5 +17,6 @@ router.register(r'reviews', ReviewViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('generate-image/', GenerateImageView.as_view(), name='generate-image'),
     # Add any other URL patterns here if necessary
 ]

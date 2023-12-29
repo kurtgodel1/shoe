@@ -62,17 +62,19 @@ const MyPage: React.FC = () => {
         <Button variant="contained" onClick={() => navigate('/register')}>Sign Up</Button>
       </Box>
 
-      <Drawer anchor="left" open={isLoginDrawerOpen} onClose={(event) => {
+      <Drawer anchor="left" open={isLoginDrawerOpen} variant="persistent" onClose={(event) => {
         toggleLoginDrawer(false)(event as MouseEvent | KeyboardEvent);
         navigate('/');
-      }}>
+      }}   sx={{ width: { md: '30%' } }} // apply width on medium screens and up
+      >
         <SignInSide/>
       </Drawer>
 
-      <Drawer anchor="right" open={isSignUpDrawerOpen} onClose={(event) => {
+      <Drawer anchor="right" open={isSignUpDrawerOpen} variant="persistent" onClose={(event) => {
         toggleSignUpDrawer(false)(event as MouseEvent | KeyboardEvent);
         navigate('/');
-      }}>
+      }}   sx={{ width: { md: '30%' } }} // apply width on medium screens and up
+      >
         <SignUpSide/>
       </Drawer>
     </div>

@@ -31,7 +31,7 @@ const CategoriesSection : React.FC = () => {
 
     return (
         <div>
-            <div className="mb-10" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div className="mb-10 flex justify-center items-center">
             <Typography variant="h4" sx={{ margin: 2 }}>
                 <CategoryIcon/> Category
             </Typography>
