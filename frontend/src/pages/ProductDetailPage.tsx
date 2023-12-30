@@ -30,6 +30,7 @@ import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 
 
 
+
 const ProductDetailPage = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState<Product | null>(null);

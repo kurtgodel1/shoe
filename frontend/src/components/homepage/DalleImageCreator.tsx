@@ -8,6 +8,7 @@ const DalleImageCreator = () => {
   const [prompt, setPrompt] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleResize = () => {
     setIsMobile(window.innerWidth < 768);
@@ -21,6 +22,7 @@ const DalleImageCreator = () => {
   });
 
   const handleCreateImage = async () => {
+    setIsLoading(true);
     const response = await fetch(`${config.API_URL}/api/generate-image/`, {
       method: 'POST',
       headers: {
@@ -31,7 +33,7 @@ const DalleImageCreator = () => {
   
     const data = await response.json();
     setImageUrl(data.imageUrl); 
-    //setImageUrl("https://articonics.s3.eu-north-1.amazonaws.com/product_images/natureillustration2.png");
+    setIsLoading(false);
   };
 
   return (
@@ -68,7 +70,11 @@ const DalleImageCreator = () => {
       </Grid>
       <Grid item xs={12} className="flex items-center justify-center">
         {imageUrl ? (
-          <img src={imageUrl} alt="Generated from DALL-E" className="max-w-full max-h-[70vh]" />
+          isLoading ? (
+            <div>Loading...</div>
+          ) : (
+            <img src={imageUrl} alt="Generated" />
+          )
         ) : (
           <div className="w-full bg-gray-200 flex items-center justify-center h-[70vh]">
             <span className="text-gray-500">Image will appear here</span>
