@@ -1,66 +1,88 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { fabric } from 'fabric';
-import { Product } from '../types/types';
-import axios from 'axios';
-import config from '../config';
 
-const TshirtMockup = () => {
-    const canvasRef = useRef<HTMLCanvasElement | null>(null);
-    const [product, setProduct] = useState<Product | null>(null);
+interface TshirtMockupProps {
+  image: string;
+}
+
+const TshirtMockup: React.FC<TshirtMockupProps> = ({ image }) => {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const [canvas, setCanvas] = useState<fabric.Canvas | null>(null);
+
+  const resizeCanvas = () => {
+    if (containerRef.current && canvas) {
+      const containerWidth = containerRef.current.clientWidth;
+      const containerHeight = containerRef.current.clientHeight;
+
+      canvas.setWidth(containerWidth);
+      canvas.setHeight(containerHeight);
+
+      canvas.getObjects().forEach((obj) => {
+        if (obj.type === 'image') {
+          obj.scaleToWidth(containerWidth * 0.4);
+          obj.scaleToHeight(containerHeight * 0.4);
+          obj.set({
+            left: containerWidth / 2,
+            top: containerHeight / 2,
+          });
+        }
+      });
+
+      canvas.renderAll();
+    }
+  };
 
   useEffect(() => {
-    axios.get<Product>(`${config.API_URL}/api/products/1`)
-      .then(response => {
-        setProduct(response.data);
-      })
-      .catch(error => console.error('Error fetching product details', error));
+    if (canvasRef.current && containerRef.current) {
+      const newCanvas = new fabric.Canvas(canvasRef.current, {
+        width: containerRef.current.clientWidth,
+        height: containerRef.current.clientHeight,
+      });
+      setCanvas(newCanvas);
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+
+    return () => {
+      if (canvas) {
+        canvas.dispose();
+      }
+      window.removeEventListener('resize', resizeCanvas);
+    };
   }, []);
 
   useEffect(() => {
-    if (product && product.images) {
-      const canvasElement = canvasRef.current;
-      if (!canvasElement) return;
+    if (!canvas) return;
 
-      const canvas = new fabric.Canvas(canvasElement);
+    fabric.Image.fromURL('/tshirt.png', (tshirtImg) => {
+      const canvasWidth = canvas.getWidth();
+      const canvasHeight = canvas.getHeight();
 
-      fabric.Image.fromURL('/tshirt.png', (tshirtImg) => {
-        // Ensure canvas dimensions are defined
-        const canvasWidth = canvas.getWidth();
-        const canvasHeight = canvas.getHeight();
+      tshirtImg.scaleToWidth(canvasWidth);
+      tshirtImg.scaleToHeight(canvasHeight);
+      tshirtImg.set({ selectable: false });
+      canvas.add(tshirtImg);
 
-        tshirtImg.scaleToWidth(canvasWidth);
-        tshirtImg.scaleToHeight(canvasHeight);
-        canvas.add(tshirtImg);
-        tshirtImg.set({ selectable: false });
-
-        product.images.forEach((image) => {
-          fabric.Image.fromURL(image.image, (productImg) => {
-            productImg.scaleToWidth(200); // Adjust as needed
-            productImg.scaleToHeight(200); // Adjust as needed
-            productImg.set({
-              left: canvasWidth / 2,
-              top: canvasHeight / 2,
-              originX: 'center',
-              originY: 'center'
-            });
-            canvas.add(productImg);
-          });
+      fabric.Image.fromURL(image, (productImg) => {
+        productImg.scaleToWidth(canvasWidth * 0.4); // Adjust scaling factor as needed
+        productImg.scaleToHeight(canvasHeight * 0.4); // Adjust scaling factor as needed
+        productImg.set({
+          left: canvasWidth / 2,
+          top: canvasHeight / 2,
+          originX: 'center',
+          originY: 'center',
+          selectable: false,
         });
+        canvas.add(productImg);
       });
+    });
 
-      // Update the canvas rendering
-      canvas.renderAll();
-
-      // Clean up
-      return () => {
-        canvas.dispose();
-      };
-    }
-  }, [product]);
+  }, [canvas, image]);
 
   return (
-    <div>
-      <canvas ref={canvasRef} width={500} height={500} />
+    <div ref={containerRef} style={{ width: '100%', height: '100%' }}>
+      <canvas ref={canvasRef} />
     </div>
   );
 };

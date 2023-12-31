@@ -27,6 +27,8 @@ import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
 import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import TshirtMockup from '../components/TshirtMockUp';
+import CanvasMockup from '../components/CanvasMockup';
 
 
 
@@ -37,6 +39,10 @@ const ProductDetailPage = () => {
   const dispatch = useDispatch();
   const [cubeSwiper, setCubeSwiper] = useState<SwiperClass | null>(null); // Correctly typed
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [showMockup, setShowMockup] = useState(false);
+  const [showCanvas, setShowCanvas] = useState(false);
+  const [showImage, setShowImage] = useState(true);
+
 
   useEffect(() => {
     axios.get<Product>(`${config.API_URL}/api/products/${productId}`)
@@ -51,7 +57,6 @@ const ProductDetailPage = () => {
   }
 
   const handleAddToCart = () => {
-    console.log('Adding to cart');
     dispatch(addToCart(product));
   };
 
@@ -61,18 +66,46 @@ const ProductDetailPage = () => {
     }
   };
 
+  const toggleMockup = () => {
+    setShowCanvas(false);
+    setShowImage(false);
+    setShowMockup(true);
+  };
+
+  const toggleCanvas = () => {
+    setShowMockup(false);
+    setShowImage(false);
+    setShowCanvas(true);
+  };
+
+  const toggleImage = () => {
+    setShowMockup(false);
+    setShowCanvas(false);
+    setShowImage(true);
+  };
+
   const slides = product.images.map(img => ({ src: img.image, downloadUrl: img.image }));
-  console.log(slides);
 
   const plusMinuceButton =
     "flex h-8 w-8 cursor-pointer items-center justify-center border duration-100 hover:bg-neutral-100 focus:ring-2 focus:ring-gray-500 active:ring-2 active:ring-gray-500";
   
+
+    const swiperSlideStyle = {
+      height: '70vh', // Set a minimum height
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+    };
+
   return (
     <Box sx={{ flexGrow: 1, width: '100%'  }} className="mb-60">
     <Box className="productDetailContainer" sx={{ padding: 2 }}>
         <Grid container spacing={10}>
             <Grid item xs={12} md={6}>
-            <Box position="relative">
+            <Box position="relative" style={{ height: '100%' }}>
+            <Button onClick={toggleImage}>Image</Button>
+            <Button onClick={toggleMockup}>T-Shirt</Button>
+            <Button onClick={toggleCanvas}>Canvas</Button>
               <Swiper
                 effect={'cube'}
                 loop={true}
@@ -91,11 +124,19 @@ const ProductDetailPage = () => {
                 className="mySwiper"
                 onSwiper={(swiper) => setCubeSwiper(swiper)}
                 >
-                {product.images.map((image, index) => (
-                  <SwiperSlide key={index}>
-                    <img src={image.image} alt={product.name} />
-                  </SwiperSlide>
-                ))}
+                  {
+                  product.images.map((image, index) => (
+                    <SwiperSlide key={index} style={swiperSlideStyle}>
+                      {showMockup ? (
+                          <TshirtMockup image={image.image} />
+                        ) : showCanvas ? (
+                          <CanvasMockup image={image.image} />
+                        ) : showImage ? (
+                          <img src={image.image} alt={`Product Image ${index}`} />
+                        ): <img src={image.image} alt={`Product Image ${index}`} />
+                      }
+                    </SwiperSlide>
+                  ))}
               </Swiper>
               <IconButton 
                   onClick={() => setLightboxOpen(true)}
