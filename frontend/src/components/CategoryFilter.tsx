@@ -24,24 +24,24 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({ selectedCategory, onFil
 
     return (
         <Box sx={{ overflowX: 'auto', whiteSpace: 'nowrap', padding: '10px 0' }}>
-      <Button 
-        variant={selectedCategory === '' ? 'contained' : 'outlined'} 
-        onClick={() => onFilterChange('')}
-        sx={{ margin: '0 10px' }}
-      >
-        All Categories
-      </Button>
-      {categories.map(category => (
-        <Button 
-          key={category.id} 
-          variant={selectedCategory === category.name ? 'contained' : 'outlined'} 
-          onClick={() => onFilterChange(category.name)}
-          sx={{ margin: '0 10px' }}
-        >
-          {category.name}
-        </Button>
-      ))}
-    </Box>
+            <Button 
+                variant={selectedCategory === '' ? 'contained' : 'outlined'} 
+                onClick={() => onFilterChange('')}
+                sx={{ margin: '0 10px' }}
+            >
+                All Categories
+            </Button>
+            {categories.map(category => (
+                <Button 
+                key={category.id} 
+                variant={selectedCategory === category.name ? 'contained' : 'outlined'} 
+                onClick={() => onFilterChange(category.name)}
+                sx={{ margin: '0 10px' }}
+                >
+                {category.name}
+                </Button>
+            ))}
+            </Box>
     );
 };
 
