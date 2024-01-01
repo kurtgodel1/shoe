@@ -20,10 +20,10 @@ const TshirtMockup: React.FC<TshirtMockupProps> = ({ image }) => {
 
       canvas.getObjects().forEach((obj) => {
         if (obj.type === 'image') {
-          obj.scaleToWidth(containerWidth * 0.4);
-          obj.scaleToHeight(containerHeight * 0.4);
+          obj.scaleToWidth(containerWidth );
+          obj.scaleToHeight(containerHeight );
           obj.set({
-            left: containerWidth / 2,
+            left: containerWidth /2,
             top: containerHeight / 2,
           });
         }
@@ -55,14 +55,19 @@ const TshirtMockup: React.FC<TshirtMockupProps> = ({ image }) => {
   useEffect(() => {
     if (!canvas) return;
 
-    fabric.Image.fromURL('/tshirt.png', (tshirtImg) => {
+    fabric.Image.fromURL('/tshirt2.jpg', (tshirtImg) => {
       const canvasWidth = canvas.getWidth();
       const canvasHeight = canvas.getHeight();
 
-      tshirtImg.scaleToWidth(canvasWidth);
-      tshirtImg.scaleToHeight(canvasHeight);
+      if (tshirtImg.width && tshirtImg.height) {
+        const scale = Math.min(
+          canvasWidth / tshirtImg.width,
+          canvasHeight / tshirtImg.height
+        );
+        tshirtImg.scale(scale);
+      }
+
       tshirtImg.set({ selectable: false });
-      canvas.add(tshirtImg);
 
       fabric.Image.fromURL(image, (productImg) => {
         productImg.scaleToWidth(canvasWidth * 0.4); // Adjust scaling factor as needed
@@ -73,8 +78,10 @@ const TshirtMockup: React.FC<TshirtMockupProps> = ({ image }) => {
           originX: 'center',
           originY: 'center',
           selectable: false,
+          opacity: 0.8,
         });
-        canvas.add(productImg);
+        
+        canvas.add(new fabric.Group([tshirtImg, productImg], { selectable: false }));
       });
     });
 

@@ -46,7 +46,7 @@ const NavBar: React.FC = () => {
             <HideOnScroll>
                 <AppBarStyled>
                     <Toolbar>
-                        <Box sx={{ flexGrow: .1 }} />
+                        <Box sx={{ flexGrow: 1 }} />
                         {/* Mobile Menu Icon */}
                         <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                         <StaggeredDropDown
